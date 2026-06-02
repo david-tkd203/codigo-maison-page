@@ -3,10 +3,9 @@ import { AnimatePresence, motion } from 'motion/react';
 
 const links = [
   { label: 'Inicio', href: '#hero' },
-  { label: 'Nosotros', href: '#about' },
+  { label: 'Diferencial', href: '#value-prop' },
   { label: 'Experticia', href: '#expertise' },
   { label: 'Soluciones', href: '#solutions' },
-  { label: 'Proyectos', href: '#products' },
   { label: 'Metodología', href: '#methodology' },
   { label: 'Contacto', href: '#contact' },
 ];
@@ -27,13 +26,14 @@ export default function Navbar({ theme = 'light', onToggleTheme = () => {} }) {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 px-0 py-4 transition-all duration-[350ms]${scrolled ? ' bg-surface/92 backdrop-blur-[16px] shadow-[0_1px_24px_rgba(7,43,58,0.08)]' : ''}`}>
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-        <a href="#hero">
+        <a href="#hero" className="flex items-center gap-3">
           <img
             src="/images/codigo_maison_logo_sin_fondo.png"
             alt="Código Maison"
             className="h-9 w-auto"
             loading="eager"
           />
+          <span className="font-display text-[1.1rem] font-bold text-oil tracking-[-0.02em]">Código Maison</span>
         </a>
 
         <div className="hidden md:flex items-center gap-4">

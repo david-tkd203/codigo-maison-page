@@ -111,27 +111,27 @@ export default function Contact() {
               <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-electric fill-none stroke-[1.5] flex-shrink-0">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
               </svg>
-              <span>Buenos Aires, Argentina</span>
+              <span>San Antonio 385 Of. 201, Santiago Centro, Chile</span>
             </div>
           </div>
 
           <form className="bg-surface rounded-3xl border border-border-soft p-10" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Nombre del Representante *</label>
-                <input name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre" required
+                <label htmlFor="field-name" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Nombre del Representante *</label>
+                <input id="field-name" name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Empresa / Organización *</label>
-                <input name="company" value={form.company} onChange={handleChange} placeholder="Nombre de tu empresa" required
+                <label htmlFor="field-company" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Empresa / Organización *</label>
+                <input id="field-company" name="company" value={form.company} onChange={handleChange} placeholder="Nombre de tu empresa" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Sector Industrial</label>
-                <select name="sector" value={form.sector} onChange={handleChange}
+                <label htmlFor="field-sector" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Sector Industrial</label>
+                <select id="field-sector" name="sector" value={form.sector} onChange={handleChange}
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
                   <option value="">Seleccioná un sector</option>
                   <option value="logistica">Logística</option>
@@ -142,8 +142,8 @@ export default function Contact() {
                 </select>
               </div>
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Tipo de Proyecto</label>
-                <select name="projectType" value={form.projectType} onChange={handleChange}
+                <label htmlFor="field-project" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Tipo de Proyecto</label>
+                <select id="field-project" name="projectType" value={form.projectType} onChange={handleChange}
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
                   <option value="">Seleccioná un tipo</option>
                   <option value="logistica">Logística</option>
@@ -155,19 +155,19 @@ export default function Contact() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Correo Electrónico *</label>
-                <input name="email" type="email" value={form.email} onChange={handleChange} placeholder="correo@empresa.com" required
+                <label htmlFor="field-email" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Correo Electrónico *</label>
+                <input id="field-email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="correo@empresa.com" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
               <div className="mb-4">
-                <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">WhatsApp (Opcional)</label>
-                <input name="whatsapp" type="tel" value={form.whatsapp} onChange={handleChange} placeholder="+54 9 11 2345-6789"
+                <label htmlFor="field-whatsapp" className="block text-[0.82rem] font-semibold text-oil mb-1.5">WhatsApp (Opcional)</label>
+                <input id="field-whatsapp" name="whatsapp" type="tel" value={form.whatsapp} onChange={handleChange} placeholder="+54 9 11 2345-6789"
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
             </div>
             <div className="mb-4">
-              <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Rango de Presupuesto Estimado (Opcional)</label>
-              <select name="budget" value={form.budget} onChange={handleChange}
+              <label htmlFor="field-budget" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Rango de Presupuesto Estimado (Opcional)</label>
+              <select id="field-budget" name="budget" value={form.budget} onChange={handleChange}
                 className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
                 <option value="">Seleccioná un rango</option>
                 <option value="menos-5k">Menos de $5,000 USD</option>
@@ -177,8 +177,8 @@ export default function Contact() {
               </select>
             </div>
             <div className="mb-4">
-              <label className="block text-[0.82rem] font-semibold text-oil mb-1.5">Contanos sobre tu necesidad *</label>
-              <textarea name="message" value={form.message} onChange={handleChange} placeholder="Describí tu proyecto, desafío o idea..." required
+              <label htmlFor="field-message" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Contanos sobre tu necesidad *</label>
+              <textarea id="field-message" name="message" value={form.message} onChange={handleChange} placeholder="Describí tu proyecto, desafío o idea..." required
                 className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)] min-h-28 resize-y" />
             </div>
             <button type="submit" disabled={sending}
@@ -190,7 +190,7 @@ export default function Contact() {
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                   </svg>
-                  Enviando...
+                  Enviando&hellip;
                 </span>
               ) : 'Enviar Mensaje'}
             </button>

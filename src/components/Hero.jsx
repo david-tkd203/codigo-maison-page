@@ -36,7 +36,7 @@ function MagneticButton({ children, href, className }) {
     return <a href={href} className={className} ref={btnRef}>{children}</a>;
   }
 
-  return <button className={className} ref={btnRef}>{children}</button>;
+  return <button type="button" className={className} ref={btnRef}>{children}</button>;
 }
 
 const systemSignals = [
@@ -125,7 +125,7 @@ export default function Hero() {
             </MagneticButton>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-[500px] mx-auto lg:mx-0 lg:max-w-none">
+          <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-[500px] mx-auto lg:mx-0 lg:max-w-none mb-4">
             {systemSignals.map((signal) => (
               <div className="relative overflow-hidden bg-surface/85 border border-electric/20 rounded-[18px] p-4 shadow-[0_16px_42px_rgba(7,43,58,0.07)] after:content-[''] after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-cyan-glow/22 after:to-transparent after:translate-x-[-120%] after:animate-[card-glint_4.4s_ease-in-out_infinite]" key={signal.value}>
                 <strong className="block font-tech text-[0.86rem] text-oil mb-1.5 tracking-[0.04em]">{signal.value}</strong>
