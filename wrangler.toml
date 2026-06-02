@@ -1,0 +1,7 @@
+name = "codigo-maison"
+compatibility_date = "2026-05-28"
+
+pages_build_output_dir = "dist"
+
+[env.production]
+routes = [{ pattern = "codigo-maison.pages.dev", custom_domain = false }]

@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Compiled email templates
+/emails/dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Raw video files (keep compressed .mp4 only)
+public/gif/*.MOV
+public/gif/*.mov
+
+# Local agent/config directories
+.agents/
+.claude/
+.atl/
+.opencode/
+
+# Python / Backend (no longer used)
+__pycache__/
+*.pyc
+*.pyo
+*.sqlite3
+backend/
+requirements.txt
+Dockerfile
+docker-compose.yml
+nginx.conf
+.dockerignore
+
+# Artifacts / notes
+firma.html
+nul
+front.txt
