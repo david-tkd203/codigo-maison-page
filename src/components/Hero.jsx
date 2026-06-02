@@ -42,7 +42,7 @@ function MagneticButton({ children, href, className }) {
 const systemSignals = [
   { value: 'Security-First', label: 'ciberseguridad desde la arquitectura' },
   { value: 'Cloud + Mobile', label: 'ecosistemas tecnológicos escalables' },
-  { value: 'Legal-by-Design', label: 'cumplimiento y datos protegidos' },
+  { value: 'Apps iOS y Android', label: 'aplicaciones nativas multiplataforma' },
 ];
 
 export default function Hero() {

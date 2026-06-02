@@ -471,6 +471,531 @@
 @keyframes ring-spin-reverse { to { rotate: -360deg; } }
 
 
+
+/* ─── Anillos orbitales segmentados ─── */
+.hunter-orbit {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.orbit-1 {
+  width: 520px; height: 520px;
+  border: 1.5px solid rgba(0,207,255,0.05);
+  clip-path: polygon(50% 0%, 75% 10%, 100% 30%, 100% 70%, 75% 90%, 50% 100%, 25% 90%, 0% 70%, 0% 30%, 25% 10%);
+  -webkit-clip-path: polygon(50% 0%, 75% 10%, 100% 30%, 100% 70%, 75% 90%, 50% 100%, 25% 90%, 0% 70%, 0% 30%, 25% 10%);
+  animation: orbit-spin 30s linear infinite;
+}
+.orbit-2 {
+  width: 440px; height: 440px;
+  border: 1px dashed rgba(111,251,255,0.04);
+  clip-path: polygon(50% 0%, 75% 10%, 100% 30%, 100% 70%, 75% 90%, 50% 100%, 25% 90%, 0% 70%, 0% 30%, 25% 10%);
+  -webkit-clip-path: polygon(50% 0%, 75% 10%, 100% 30%, 100% 70%, 75% 90%, 50% 100%, 25% 90%, 0% 70%, 0% 30%, 25% 10%);
+  animation: orbit-spin-reverse 22s linear infinite;
+}
+.orbit-3 {
+  width: 370px; height: 370px;
+  border: 0.5px solid rgba(0,207,255,0.03);
+  clip-path: polygon(50% 2%, 90% 20%, 98% 60%, 70% 98%, 30% 98%, 2% 60%, 10% 20%);
+  -webkit-clip-path: polygon(50% 2%, 90% 20%, 98% 60%, 70% 98%, 30% 98%, 2% 60%, 10% 20%);
+  animation: orbit-spin 18s linear infinite;
+}
+@keyframes orbit-spin { to { rotate: 360deg; } }
+@keyframes orbit-spin-reverse { to { rotate: -360deg; } }
+
+/* ─── Base angular ─── */
+.hunter-base {
+  position: relative;
+  width: 380px;
+  height: 200px;
+  border-radius: 42% 58% 38% 62% / 58% 42% 58% 42%;
+  background: radial-gradient(ellipse at 50% 50%, #0a0a18 0%, #05050c 100%);
+  border: 1.5px solid rgba(0,207,255,0.06);
+  box-shadow:
+    inset 0 0 50px rgba(0,0,0,0.8),
+    0 0 40px rgba(0,207,255,0.03),
+    0 0 80px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+.hunter-base::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 42% 58% 38% 62% / 58% 42% 58% 42%;
+  padding: 2px;
+  background: conic-gradient(from 45deg, transparent, rgba(0,207,255,0.04), transparent 60deg, rgba(111,251,255,0.02) 120deg, transparent 180deg, rgba(0,207,255,0.03) 240deg, transparent 300deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ─── HUD brackets ─── */
+.hud-bracket {
+  position: absolute;
+  width: 28px; height: 28px;
+  z-index: 8;
+  pointer-events: none;
+  opacity: 0.25;
+}
+.bracket-tl { top: 6px; left: 10px; border-top: 1.5px solid rgba(0,207,255,0.3); border-left: 1.5px solid rgba(0,207,255,0.3); }
+.bracket-tr { top: 6px; right: 10px; border-top: 1.5px solid rgba(0,207,255,0.3); border-right: 1.5px solid rgba(0,207,255,0.3); }
+.bracket-bl { bottom: 6px; left: 10px; border-bottom: 1.5px solid rgba(0,207,255,0.3); border-left: 1.5px solid rgba(0,207,255,0.3); }
+.bracket-br { bottom: 6px; right: 10px; border-bottom: 1.5px solid rgba(0,207,255,0.3); border-right: 1.5px solid rgba(0,207,255,0.3); }
+
+/* ─── Shutter angular (cierre cruzado tipo Predator) ─── */
+.hunter-shutter {
+  position: absolute;
+  z-index: 12;
+  pointer-events: none;
+}
+.shutter-u {
+  top: -2%; left: -2%; width: 104%; height: 52%;
+  background: linear-gradient(180deg, #080812 0%, #111125 30%, transparent 100%);
+  border-bottom: 1px solid rgba(0,207,255,0.05);
+  transform: translateY(-100%);
+  animation: shut-u 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.shutter-u::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,207,255,0.08), rgba(111,251,255,0.1), rgba(0,207,255,0.08), transparent);
+  animation: shutter-glow 7s ease-in-out infinite;
+}
+.shutter-d {
+  bottom: -2%; left: -2%; width: 104%; height: 52%;
+  background: linear-gradient(0deg, #080812 0%, #111125 30%, transparent 100%);
+  border-top: 1px solid rgba(0,207,255,0.05);
+  transform: translateY(100%);
+  animation: shut-d 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.shutter-d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,207,255,0.08), rgba(111,251,255,0.1), rgba(0,207,255,0.08), transparent);
+  animation: shutter-glow 7s ease-in-out infinite;
+}
+.shutter-l {
+  top: -2%; left: -2%; width: 52%; height: 104%;
+  background: linear-gradient(90deg, #080812 0%, #111125 30%, transparent 100%);
+  border-right: 1px solid rgba(0,207,255,0.05);
+  transform: translateX(-100%);
+  animation: shut-l 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.shutter-r {
+  top: -2%; right: -2%; width: 52%; height: 104%;
+  background: linear-gradient(270deg, #080812 0%, #111125 30%, transparent 100%);
+  border-left: 1px solid rgba(0,207,255,0.05);
+  transform: translateX(100%);
+  animation: shut-r 7s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.shutter-core {
+  position: absolute;
+  left: 25%; top: 25%;
+  width: 50%; height: 50%;
+  z-index: 13;
+  pointer-events: none;
+  background: radial-gradient(circle, rgba(0,207,255,0.04) 0%, transparent 60%);
+  opacity: 0;
+  animation: shutter-core-pulse 7s ease-in-out infinite;
+}
+@keyframes shutter-glow {
+  0%, 3.5%, 5.5%, 100% { opacity: 0.15; }
+  4% { opacity: 1; }
+  5% { opacity: 0.3; }
+}
+@keyframes shut-u {
+  0%, 2.5%, 6%, 100% { transform: translateY(-101%); }
+  3% { transform: translateY(0); }
+  5.5% { transform: translateY(0); }
+}
+@keyframes shut-d {
+  0%, 2.5%, 6%, 100% { transform: translateY(101%); }
+  3% { transform: translateY(0); }
+  5.5% { transform: translateY(0); }
+}
+@keyframes shut-l {
+  0%, 3%, 5.5%, 100% { transform: translateX(-101%); }
+  3.5% { transform: translateX(0); }
+  5% { transform: translateX(0); }
+}
+@keyframes shut-r {
+  0%, 3%, 5.5%, 100% { transform: translateX(101%); }
+  3.5% { transform: translateX(0); }
+  5% { transform: translateX(0); }
+}
+@keyframes shutter-core-pulse {
+  0%, 2.5%, 5.5%, 100% { opacity: 0; }
+  3% { opacity: 0.6; }
+  4% { opacity: 1; }
+  5% { opacity: 0; }
+}
+
+/* ─── Lente sensor ─── */
+.hunter-lens {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 180px; height: 180px;
+  margin: -90px 0 0 -90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.lens-plate {
+  position: absolute;
+  border-radius: 50%;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+}
+.plate-1 { width: 100%; height: 100%; border: 1.5px solid rgba(0,207,255,0.06); box-shadow: 0 0 15px rgba(0,207,255,0.02); }
+.plate-2 { width: 82%; height: 82%; border: 1px solid rgba(111,251,255,0.03); animation: orbit-spin 35s linear infinite; }
+.plate-3 { width: 66%; height: 66%; border: 0.5px dashed rgba(0,207,255,0.03); animation: orbit-spin-reverse 20s linear infinite; }
+
+/* ─── Iris táctico ─── */
+.tactical-iris {
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+.iris-core-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 45% 35%,
+    rgba(0,207,255,0.35) 0%,
+    rgba(0,150,200,0.25) 12%,
+    rgba(0,80,130,0.2) 25%,
+    rgba(0,40,80,0.25) 40%,
+    rgba(0,20,45,0.35) 55%,
+    rgba(0,8,20,0.5) 70%,
+    rgba(0,0,10,0.7) 100%
+  );
+  box-shadow: inset 0 0 20px rgba(0,207,255,0.06);
+}
+
+/* Líneas radiales tipo sensor */
+.iris-radial-lines {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg, rgba(0,207,255,0.03) 2deg, transparent 4deg,
+    rgba(111,251,255,0.02) 8deg, transparent 10deg,
+    rgba(0,207,255,0.03) 14deg, transparent 16deg,
+    rgba(0,207,255,0.02) 20deg, transparent 22deg,
+    rgba(111,251,255,0.02) 26deg, transparent 28deg,
+    rgba(0,207,255,0.03) 32deg, transparent 34deg,
+    rgba(0,207,255,0.02) 38deg, transparent 40deg,
+    rgba(111,251,255,0.02) 44deg, transparent 46deg,
+    rgba(0,207,255,0.03) 50deg, transparent 52deg,
+    rgba(0,207,255,0.02) 56deg, transparent 58deg,
+    rgba(111,251,255,0.02) 62deg, transparent 64deg,
+    rgba(0,207,255,0.03) 68deg, transparent 70deg,
+    rgba(0,207,255,0.02) 74deg, transparent 76deg,
+    rgba(111,251,255,0.02) 80deg, transparent 82deg,
+    rgba(0,207,255,0.03) 86deg, transparent 88deg,
+    rgba(0,207,255,0.02) 92deg, transparent 94deg,
+    rgba(111,251,255,0.02) 98deg, transparent 100deg,
+    rgba(0,207,255,0.03) 104deg, transparent 106deg,
+    rgba(0,207,255,0.02) 110deg, transparent 112deg,
+    rgba(111,251,255,0.02) 116deg, transparent 118deg,
+    rgba(0,207,255,0.03) 122deg, transparent 124deg,
+    rgba(0,207,255,0.02) 128deg, transparent 130deg,
+    rgba(111,251,255,0.02) 134deg, transparent 136deg,
+    rgba(0,207,255,0.03) 140deg, transparent 142deg,
+    rgba(0,207,255,0.02) 146deg, transparent 148deg,
+    rgba(111,251,255,0.02) 152deg, transparent 154deg,
+    rgba(0,207,255,0.03) 158deg, transparent 160deg,
+    rgba(0,207,255,0.02) 164deg, transparent 166deg,
+    rgba(111,251,255,0.02) 170deg, transparent 172deg,
+    rgba(0,207,255,0.03) 176deg, transparent 178deg,
+    rgba(0,207,255,0.02) 182deg, transparent 184deg,
+    rgba(111,251,255,0.02) 188deg, transparent 190deg,
+    rgba(0,207,255,0.03) 194deg, transparent 196deg,
+    rgba(0,207,255,0.02) 200deg, transparent 202deg,
+    rgba(111,251,255,0.02) 206deg, transparent 208deg,
+    rgba(0,207,255,0.03) 212deg, transparent 214deg,
+    rgba(0,207,255,0.02) 218deg, transparent 220deg,
+    rgba(111,251,255,0.02) 224deg, transparent 226deg,
+    rgba(0,207,255,0.03) 230deg, transparent 232deg,
+    rgba(0,207,255,0.02) 236deg, transparent 238deg,
+    rgba(111,251,255,0.02) 242deg, transparent 244deg,
+    rgba(0,207,255,0.03) 248deg, transparent 250deg,
+    rgba(0,207,255,0.02) 254deg, transparent 256deg,
+    rgba(111,251,255,0.02) 260deg, transparent 262deg,
+    rgba(0,207,255,0.03) 266deg, transparent 268deg,
+    rgba(0,207,255,0.02) 272deg, transparent 274deg,
+    rgba(111,251,255,0.02) 278deg, transparent 280deg,
+    rgba(0,207,255,0.03) 284deg, transparent 286deg,
+    rgba(0,207,255,0.02) 290deg, transparent 292deg,
+    rgba(111,251,255,0.02) 296deg, transparent 298deg,
+    rgba(0,207,255,0.03) 302deg, transparent 304deg,
+    rgba(0,207,255,0.02) 308deg, transparent 310deg,
+    rgba(111,251,255,0.02) 314deg, transparent 316deg,
+    rgba(0,207,255,0.03) 320deg, transparent 322deg,
+    rgba(0,207,255,0.02) 326deg, transparent 328deg,
+    rgba(111,251,255,0.02) 332deg, transparent 334deg,
+    rgba(0,207,255,0.03) 338deg, transparent 340deg,
+    rgba(0,207,255,0.02) 344deg, transparent 346deg,
+    rgba(111,251,255,0.02) 350deg, transparent 352deg,
+    rgba(0,207,255,0.03) 356deg, transparent 360deg
+  );
+  animation: radial-rotate 20s linear infinite;
+}
+@keyframes radial-rotate { to { transform: rotate(360deg); } }
+
+/* Hex mesh */
+.iris-hex-mesh {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background-image:
+    linear-gradient(60deg, rgba(0,207,255,0.02) 1px, transparent 1px),
+    linear-gradient(-60deg, rgba(0,207,255,0.02) 1px, transparent 1px);
+  background-size: 10px 17px;
+  background-position: 0 0;
+  animation: hex-scroll 15s linear infinite;
+}
+@keyframes hex-scroll { to { background-position: 10px 17px; } }
+
+/* Anillos de rango */
+.iris-range-ring {
+  position: absolute;
+  border-radius: 50%;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.ring-r1 { width: 78%; height: 78%; border: 0.5px solid rgba(0,207,255,0.07); }
+.ring-r2 { width: 54%; height: 54%; border: 0.5px dashed rgba(111,251,255,0.05); }
+.ring-r3 { width: 30%; height: 30%; border: 0.5px solid rgba(0,207,255,0.04); }
+
+/* ─── Pupila de cazador ─── */
+.hunter-pupil {
+  position: absolute;
+  width: 110px; height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,207,255,0.08);
+  will-change: transform;
+}
+.pupil-dark-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #070710 0%, #000001 100%);
+  z-index: 0;
+}
+
+/* Crosshair interno de la pupila */
+.pupil-crosshair {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.pupil-crosshair::before, .pupil-crosshair::after {
+  content: '';
+  position: absolute;
+  background: rgba(0,207,255,0.04);
+}
+.pupil-crosshair::before {
+  left: 50%; top: 10%;
+  width: 0.5px; height: 80%;
+}
+.pupil-crosshair::after {
+  top: 50%; left: 10%;
+  height: 0.5px; width: 80%;
+}
+
+/* Laser de puntería */
+.pupil-target-laser {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 8px; height: 8px;
+  margin: -4px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(255,60,60,0.15);
+  box-shadow: 0 0 4px rgba(255,60,60,0.05);
+  z-index: 3;
+}
+
+.pupil-video-hunter {
+  position: relative;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  z-index: 1;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* ─── Targeting reticle ─── */
+.targeting-reticle {
+  position: absolute;
+  inset: -4px;
+  pointer-events: none;
+  opacity: 0.12;
+  animation: reticle-pulse 3s ease-in-out infinite;
+}
+@keyframes reticle-pulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.18; }
+}
+.targ-h, .targ-v {
+  position: absolute;
+  background: rgba(0,207,255,0.1);
+}
+.targ-h { left: 15%; top: calc(50% - 0.5px); width: 70%; height: 0.5px; }
+.targ-v { top: 15%; left: calc(50% - 0.5px); height: 70%; width: 0.5px; }
+.targ-dot {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 2.5px; height: 2.5px;
+  margin: -1.25px;
+  border-radius: 50%;
+  background: rgba(0,207,255,0.1);
+}
+.targ-triangle {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 30px; height: 30px;
+  margin: -15px;
+  border: 0.5px solid rgba(0,207,255,0.06);
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  animation: triangle-rotate 15s linear infinite;
+}
+@keyframes triangle-rotate { to { transform: rotate(360deg); } }
+
+/* ─── Scan lines ─── */
+.scan-h {
+  position: absolute;
+  left: 4%; width: 92%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,207,255,0.04), rgba(111,251,255,0.06), rgba(0,207,255,0.04), transparent);
+  animation: scan-h 2.5s linear infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+@keyframes scan-h {
+  0% { top: 4%; opacity: 0; }
+  5% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { top: 94%; opacity: 0; }
+}
+.scan-v {
+  position: absolute;
+  top: 4%; height: 92%; width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(111,251,255,0.03), rgba(0,207,255,0.04), rgba(111,251,255,0.03), transparent);
+  animation: scan-v 3s linear infinite;
+  z-index: 4;
+  pointer-events: none;
+}
+@keyframes scan-v {
+  0% { left: 4%; opacity: 0; }
+  5% { opacity: 1; }
+  50% { opacity: 1; }
+  55% { opacity: 0; }
+  100% { left: 94%; opacity: 0; }
+}
+
+/* ─── Cables externos ─── */
+.eye-cables {
+  position: absolute;
+  width: 480px; height: 320px;
+  left: calc(50% - 240px);
+  top: calc(50% - 160px);
+  pointer-events: none;
+  z-index: 1;
+}
+.cable-path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: cable-draw 3s ease-out 0.5s forwards;
+}
+.cable-path-2 {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: cable-draw-2 3.5s ease-out 1s forwards;
+}
+.cable-dot {
+  opacity: 0;
+  animation: cable-dot-pop 0.4s ease-out 2.5s forwards;
+}
+@keyframes cable-draw { to { stroke-dashoffset: 0; } }
+@keyframes cable-draw-2 { to { stroke-dashoffset: 0; } }
+@keyframes cable-dot-pop { to { opacity: 1; } }
+
+/* ─── Circuitos internos ─── */
+.eye-circuit-internal {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+.ic-path {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: ic-draw 2.5s ease-out 1s forwards;
+}
+.ic-path-2 {
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: ic-draw 2s ease-out 1.5s forwards;
+}
+.ic-dot {
+  opacity: 0;
+  animation: cable-dot-pop 0.3s ease-out 2.5s forwards;
+}
+@keyframes ic-draw { to { stroke-dashoffset: 0; } }
+
+/* ─── LEDs tácticos ─── */
+.hunter-led {
+  position: absolute;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  z-index: 6;
+  box-shadow: 0 0 10px currentColor;
+}
+.led-a {
+  top: 8%; right: 15%;
+  background: #00CFFF; color: #00CFFF;
+  animation: led-blink-a 1.2s ease-in-out infinite;
+}
+.led-b {
+  bottom: 12%; left: 18%;
+  background: #FF4646; color: #FF4646;
+  animation: led-blink-b 0.9s ease-in-out 0.5s infinite;
+}
+.led-c {
+  top: 16%; left: 12%;
+  background: #00CFFF; color: #00CFFF;
+  animation: led-blink-a 0.7s ease-in-out 1s infinite;
+}
+@keyframes led-blink-a {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px currentColor; }
+  50% { opacity: 0.15; box-shadow: 0 0 2px currentColor; }
+}
+@keyframes led-blink-b {
+  0%, 100% { opacity: 1; box-shadow: 0 0 10px currentColor; }
+  50% { opacity: 0.2; box-shadow: 0 0 2px currentColor; }
+}
+
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

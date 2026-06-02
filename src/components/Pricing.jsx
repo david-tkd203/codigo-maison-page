@@ -73,7 +73,7 @@ export default function Pricing() {
     <section className="bg-bg py-24 relative" id="pricing">
       <div className="max-w-6xl mx-auto px-6 text-center">
         <span className="section-tag">Planes y Presupuestos</span>
-        <h2 className="section-title">RESTOLOGISTIC</h2>
+        <h2 className="section-title">RESTORANT SYSTEM</h2>
         <p className="section-subtitle mx-auto mb-8">
           Sistema de gestión para restaurantes con planes flexibles y transparentes.
         </p>

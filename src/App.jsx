@@ -1,11 +1,9 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import About from './components/About'
 import ValueProposition from './components/ValueProposition'
 import Expertise from './components/Expertise'
 import Solutions from './components/Solutions'
-import Products from './components/Products'
 import Pricing from './components/Pricing'
 import Footer from './components/Footer'
 
@@ -40,11 +38,9 @@ function App() {
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <main>
         <Hero />
-        <About />
         <ValueProposition />
         <Expertise />
         <Solutions />
-        <Products />
         <Pricing />
         <Suspense fallback={<div className="min-h-[400px]" />}>
           <Methodology />
