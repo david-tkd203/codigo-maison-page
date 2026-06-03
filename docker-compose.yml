@@ -1,14 +1,9 @@
 # ============================================================
-# Código Maison — Docker Compose (Producción)
+# Código Maison — Docker Compose
 # ============================================================
-# Uso local:  docker compose up --build
-# En Dockploy se despliega automáticamente con el Dockerfile
-#
-# Variables requeridas (.env o en el entorno):
-#   VITE_EMAILJS_PUBLIC_KEY
-#   VITE_EMAILJS_SERVICE_ID
-#   VITE_EMAILJS_TEMPLATE_TEAM
-#   VITE_EMAILJS_TEMPLATE_CLIENT
+# Para usar en Dockploy:
+#   1. Build Type: Docker Compose
+#   2. Domain: configurar con service="web" y port=80
 # ============================================================
 
 services:
@@ -23,5 +18,5 @@ services:
         VITE_EMAILJS_TEMPLATE_CLIENT: ${VITE_EMAILJS_TEMPLATE_CLIENT:?err}
     image: codigomaison-web:latest
     restart: unless-stopped
-    ports:
-      - "80:80"
+    expose:
+      - "80"
