@@ -59,7 +59,7 @@ export default function Contact() {
     const templateClient = import.meta.env.VITE_EMAILJS_TEMPLATE_CLIENT;
 
     // Forzar destinatarios desde el código (anula lo configurado en el dashboard)
-    const teamParams = { ...templateParams, to_email: 'dnanculeo@codigomaison.com' };
+    const teamParams = { ...templateParams, to_email: 'dnanculeo@codigomaison.com,cassiel@codigomaison.com,icamus@codigomaison.com' };
     const clientParams = { ...templateParams, to_email: form.email.trim() };
 
     setSending(true);

@@ -37,11 +37,11 @@ function App() {
     <>
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <main>
+        <Pricing />
         <Hero />
         <ValueProposition />
         <Expertise />
         <Solutions />
-        <Pricing />
         <Suspense fallback={<div className="min-h-[400px]" />}>
           <Methodology />
         </Suspense>

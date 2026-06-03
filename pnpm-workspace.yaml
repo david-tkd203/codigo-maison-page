@@ -3,3 +3,5 @@ packages:
   - "scripts/**"
 
 onlyBuiltDependencies: []
+
+minimumReleaseAge: 10080

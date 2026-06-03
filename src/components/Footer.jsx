@@ -14,7 +14,7 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h4 className="text-white font-tech text-[0.75rem] font-medium uppercase tracking-widest mb-4">Navegación</h4>
-            <a href="#hero" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">Inicio</a>
+            <a href="#pricing" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">Restorant System</a>
             <a href="#value-prop" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">Diferencial</a>
             <a href="#expertise" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">Industrias</a>
             <a href="#solutions" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">Soluciones</a>
