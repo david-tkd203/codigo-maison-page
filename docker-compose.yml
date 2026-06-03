@@ -1,10 +1,6 @@
 # ============================================================
 # Código Maison — Docker Compose
 # ============================================================
-# Para usar en Dockploy:
-#   1. Build Type: Docker Compose
-#   2. Domain: configurar con service="web" y port=80
-# ============================================================
 
 services:
   web:
@@ -20,3 +16,9 @@ services:
     restart: unless-stopped
     expose:
       - "80"
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
