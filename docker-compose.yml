@@ -14,4 +14,10 @@ services:
         VITE_EMAILJS_TEMPLATE_CLIENT: ${VITE_EMAILJS_TEMPLATE_CLIENT:?err}
     restart: unless-stopped
     ports:
-      - "80"
+      - "80:80"
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true
