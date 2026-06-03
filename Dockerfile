@@ -1,29 +1,33 @@
 # ============================================================
-# Código Maison — Dockerfile (SPA estática con Nginx)
+# Código Maison — Dockerfile (Production)
+# SPA estática con Nginx, build multi-stage
 # ============================================================
 
-# ---------- Variables de entorno para el build (EmailJS) ----------
+# ---------- Build args (EmailJS) ----------
 ARG VITE_EMAILJS_PUBLIC_KEY
 ARG VITE_EMAILJS_SERVICE_ID
 ARG VITE_EMAILJS_TEMPLATE_TEAM
 ARG VITE_EMAILJS_TEMPLATE_CLIENT
 
-# ---------- Stage 1: Build frontend ----------
-FROM node:24-alpine AS frontend-builder
+# ============================================================
+# Stage 1: Build frontend con Vite + pnpm
+# ============================================================
+FROM node:24-alpine AS builder
 
 WORKDIR /app
+
 RUN corepack enable && corepack prepare pnpm@10 --activate
 
-# Dependencias (cache layer)
+# Cache de dependencias (se reusa si no cambia el lockfile)
 COPY package.json pnpm-lock.yaml ./
-RUN CI=true pnpm install --no-frozen-lockfile
+RUN CI=true pnpm install --frozen-lockfile
 
 # Código fuente
 COPY vite.config.js eslint.config.js index.html ./
 COPY src/ src/
 COPY public/ public/
 
-# Pasar args como env para que Vite los incruste en el bundle
+# Inyectar variables de entorno en el bundle
 ARG VITE_EMAILJS_PUBLIC_KEY
 ARG VITE_EMAILJS_SERVICE_ID
 ARG VITE_EMAILJS_TEMPLATE_TEAM
@@ -33,14 +37,18 @@ ENV VITE_EMAILJS_SERVICE_ID=$VITE_EMAILJS_SERVICE_ID
 ENV VITE_EMAILJS_TEMPLATE_TEAM=$VITE_EMAILJS_TEMPLATE_TEAM
 ENV VITE_EMAILJS_TEMPLATE_CLIENT=$VITE_EMAILJS_TEMPLATE_CLIENT
 
-# Build
 RUN pnpm build
 
-# ---------- Stage 2: Production con Nginx ----------
+# ============================================================
+# Stage 2: Nginx produccion
+# ============================================================
 FROM nginx:1.27-alpine
 
+# Crear usuario no-root para seguridad
+RUN adduser -D -u 1000 -g 'nginx' nginx
+
 # Copiar frontend compilado
-COPY --from=frontend-builder /app/dist /usr/share/nginx/html
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copiar config de nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf

@@ -42,10 +42,10 @@ function App() {
         <ValueProposition />
         <Expertise />
         <Solutions />
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-100" />}>
           <Methodology />
         </Suspense>
-        <Suspense fallback={<div className="min-h-[400px]" />}>
+        <Suspense fallback={<div className="min-h-100" />}>
           <Contact />
         </Suspense>
       </main>
