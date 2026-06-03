@@ -44,9 +44,6 @@ RUN pnpm build
 # ============================================================
 FROM nginx:1.27-alpine
 
-# Crear usuario no-root para seguridad
-RUN adduser -D -u 1000 -g 'nginx' nginx
-
 # Copiar frontend compilado
 COPY --from=builder /app/dist /usr/share/nginx/html
 
