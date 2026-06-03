@@ -50,10 +50,7 @@ __pycache__/
 *.sqlite3
 backend/
 requirements.txt
-Dockerfile
 docker-compose.yml
-nginx.conf
-.dockerignore
 
 # Artifacts / notes
 firma.html
