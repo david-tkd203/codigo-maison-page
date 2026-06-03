@@ -12,13 +12,6 @@ services:
         VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID:?err}
         VITE_EMAILJS_TEMPLATE_TEAM: ${VITE_EMAILJS_TEMPLATE_TEAM:?err}
         VITE_EMAILJS_TEMPLATE_CLIENT: ${VITE_EMAILJS_TEMPLATE_CLIENT:?err}
-    image: codigomaison-web:latest
     restart: unless-stopped
     expose:
       - "80"
-    networks:
-      - dokploy-network
-
-networks:
-  dokploy-network:
-    external: true
