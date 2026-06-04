@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Generador de Firmas — Código Maison</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@400;700&display=swap');
 
@@ -250,44 +250,125 @@
     </div>
 
     <script>
-        // Precargar el logo para que html2canvas lo capture
-        const logoImg = document.getElementById('logo-firma');
-        if (logoImg && !logoImg.complete) {
-            logoImg.onload = () => console.log('Logo cargado');
-        }
+        // Cargar el logo en un Image object para dibujarlo en canvas
+        const logoDataUrl = document.getElementById('logo-firma').src;
 
         document.getElementById('btnDescargaFirma')?.addEventListener('click', function() {
-            const target = document.getElementById('firma-captura');
-            if (!target) return;
             const btn = this;
             btn.textContent = '⏳ Generando...';
             btn.disabled = true;
 
-            // Pequeña espera para asegurar que las imágenes se rendericen
-            setTimeout(() => {
-                html2canvas(target, {
-                    backgroundColor: "#FFFFFF",
-                    scale: 2,
-                    useCORS: true,
-                    logging: false,
-                    removeContainer: true,
-                    allowTaint: false,
-                }).then(canvas => {
-                    const image = canvas.toDataURL("image/png");
-                    const link = document.createElement('a');
-                    const nombre = document.getElementById('input-nombres')?.value || 'firma';
-                    const apellido = document.getElementById('input-apellidos')?.value || '';
-                    link.download = `Firma_${nombre}_${apellido}.png`;
-                    link.href = image;
-                    link.click();
-                    btn.textContent = '⬇ Descargar Firma PNG';
-                    btn.disabled = false;
-                }).catch(err => {
-                    alert('Error al generar la firma: ' + err);
-                    btn.textContent = '⬇ Descargar Firma PNG';
-                    btn.disabled = false;
-                });
-            }, 500);
+            const nombre = document.getElementById('input-nombres')?.value || '';
+            const apellido = document.getElementById('input-apellidos')?.value || '';
+            const cargo = document.getElementById('input-cargo')?.value || '';
+            const telefono = document.getElementById('input-telefono')?.value || '';
+            const correo = document.getElementById('input-correo')?.value || '';
+
+            // Crear canvas a la escala deseada (2x para retina)
+            const scale = 2;
+            const w = 450 * scale;
+            const h = 130 * scale;
+            const canvas = document.createElement('canvas');
+            canvas.width = w;
+            canvas.height = h;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo blanco
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, w, h);
+
+            // Cargar el logo y dibujar todo
+            const logo = new Image();
+            logo.crossOrigin = 'anonymous';
+            logo.onload = function() {
+                // Logo a la izquierda
+                const logoW = 75 * scale;
+                const logoH = (logo.naturalHeight / logo.naturalWidth) * logoW;
+                const logoX = 15 * scale;
+                const logoY = 15 * scale;
+                ctx.drawImage(logo, logoX, logoY, logoW, logoH);
+
+                // Línea vertical separadora
+                const lineX = 105 * scale;
+                ctx.beginPath();
+                ctx.moveTo(lineX, 15 * scale);
+                ctx.lineTo(lineX, h - 15 * scale);
+                ctx.strokeStyle = '#00CFFF';
+                ctx.lineWidth = 2 * scale;
+                ctx.stroke();
+
+                // Nombre completo
+                ctx.font = `bold ${14 * scale}px 'Space Grotesk', sans-serif`;
+                ctx.fillStyle = '#072B3A';
+                ctx.textBaseline = 'top';
+                ctx.fillText((nombre + ' ' + apellido).trim(), lineX + 15 * scale, 15 * scale);
+
+                // Cargo
+                ctx.font = `bold ${9 * scale}px 'Space Grotesk', sans-serif`;
+                ctx.fillStyle = '#00CFFF';
+                const cargoY = 15 * scale + 20 * scale;
+                ctx.fillText(cargo.toUpperCase(), lineX + 15 * scale, cargoY);
+
+                // Código Maison
+                ctx.font = `900 ${8 * scale}px 'Space Grotesk', sans-serif`;
+                ctx.fillStyle = '#072B3A';
+                const cmY = cargoY + 14 * scale;
+                ctx.fillText('Código Maison', lineX + 15 * scale, cmY);
+
+                // Línea horizontal decorativa
+                const decoY = cmY + 24 * scale;
+                ctx.beginPath();
+                ctx.moveTo(lineX + 15 * scale, decoY);
+                ctx.lineTo(w - 15 * scale, decoY);
+                ctx.strokeStyle = '#6FFBFF';
+                ctx.lineWidth = 1 * scale;
+                ctx.stroke();
+
+                // Datos de contacto
+                ctx.font = `${10 * scale}px 'Space Grotesk', sans-serif`;
+                ctx.fillStyle = '#072B3A';
+                const contactY = decoY + 8 * scale;
+                const iconX = lineX + 15 * scale;
+                const textX = iconX + 14 * scale;
+
+                // Ubicación
+                ctx.fillText('San Antonio 385 Of 201, Santiago Centro', textX, contactY + 0 * scale);
+
+                // Teléfono
+                if (telefono) {
+                    ctx.fillText('+56 ' + telefono, textX, contactY + 16 * scale);
+                }
+
+                // Email
+                if (correo) {
+                    ctx.fillStyle = '#072B3A';
+                    ctx.fillText(correo.toLowerCase() + '@codigomaison.com', textX, contactY + 32 * scale);
+                }
+
+                // Leyenda inferior
+                ctx.font = `italic ${8 * scale}px 'Space Grotesk', sans-serif`;
+                ctx.fillStyle = 'rgba(7,43,58,0.5)';
+                ctx.textBaseline = 'bottom';
+                const footerY = h - 8 * scale;
+                ctx.fillText('Entorno de desarrollo limpio, escalable y eficiente.', 15 * scale, footerY);
+
+                // Descargar
+                const image = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.download = `Firma_${nombre || 'firma'}_${apellido || ''}.png`;
+                link.href = image;
+                link.click();
+                btn.textContent = '⬇ Descargar Firma PNG';
+                btn.disabled = false;
+            };
+
+            logo.onerror = function() {
+                alert('Error al cargar el logo. Intente de nuevo.');
+                btn.textContent = '⬇ Descargar Firma PNG';
+                btn.disabled = false;
+            };
+
+            logo.src = logoDataUrl;
         });
 
         // Auto-enviar al presionar Enter
