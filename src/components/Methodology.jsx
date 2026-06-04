@@ -2,10 +2,10 @@ import { motion } from 'motion/react';
 import { sectionVariants, containerVariants, itemVariants, useAccessibleAnimation } from '../lib/animations';
 
 const steps = [
-  { num: '01', title: 'Levantamiento & Estrategia', desc: 'Entendemos tu dolor operativo, analizamos tu negocio y definimos los requisitos exactos de la solución.', tag: 'Diagnóstico' },
-  { num: '02', title: 'Arquitectura & Diseño', desc: 'Modelamos la solución técnica con estándares de ciberseguridad desde el primer boceto.', tag: 'Diseño' },
-  { num: '03', title: 'Desarrollo Ágil & Ciberseguridad', desc: 'Construcción iterativa con entregas de valor frecuentes y protección integrada en cada capa.', tag: 'Construcción' },
-  { num: '04', title: 'Despliegue & Evolución', desc: 'Lanzamiento monitoreado y soporte continuo con actualizaciones evolutivas.', tag: 'Producción' },
+  { num: '01', title: 'Levantamiento y Estrategia', desc: 'Se analiza el dolor operativo, se estudia el negocio y se definen los requisitos exactos de la solución.', tag: 'Diagnóstico' },
+  { num: '02', title: 'Arquitectura y Diseño', desc: 'Se modela la solución técnica con estándares de ciberseguridad desde el primer boceto.', tag: 'Diseño' },
+  { num: '03', title: 'Desarrollo Ágil y Ciberseguridad', desc: 'Construcción iterativa con entregas de valor frecuentes y protección integrada en cada capa del sistema.', tag: 'Construcción' },
+  { num: '04', title: 'Despliegue y Evolución', desc: 'Lanzamiento monitoreado con soporte continuo y actualizaciones evolutivas.', tag: 'Producción' },
 ];
 
 export default function Methodology() {

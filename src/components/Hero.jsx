@@ -40,9 +40,9 @@ function MagneticButton({ children, href, className }) {
 }
 
 const systemSignals = [
-  { value: 'Security-First', label: 'ciberseguridad desde la arquitectura' },
-  { value: 'Cloud + Mobile', label: 'ecosistemas tecnológicos escalables' },
-  { value: 'Apps iOS y Android', label: 'aplicaciones nativas multiplataforma' },
+  { value: 'Security-First', label: 'Ciberseguridad desde la arquitectura' },
+  { value: 'Cloud + Mobile', label: 'Ecosistemas tecnológicos escalables' },
+  { value: 'Apps iOS y Android', label: 'Aplicaciones nativas multiplataforma' },
 ];
 
 export default function Hero() {
@@ -96,20 +96,20 @@ export default function Hero() {
         <motion.div className="max-w-[690px] lg:max-w-none text-center lg:text-left" variants={containerVariants} initial="hidden" animate="visible">
           <motion.div variants={itemVariants} className="inline-flex items-center gap-2.5 bg-surface/90 border border-electric/28 rounded-full px-4 py-2.5 font-tech text-[0.72rem] text-oil tracking-widest uppercase mb-6 shadow-[0_14px_42px_rgba(0,207,255,0.12)]">
             <span className="badge-dot" />
-            Código Maison // Ingeniería de Alto Impacto
+            Código Maison — Ingeniería de Software a Medida
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <h1 className="font-display text-[clamp(3.1rem,6.3vw,6.75rem)] font-black leading-[0.93] tracking-[-0.07em] text-oil mb-6 [&::first-letter]:text-electric">
-              Ingeniería Digital para el Liderazgo Empresarial.
+              Ingeniería Digital para el Liderazgo Empresarial
             </h1>
           </motion.div>
 
           <motion.div variants={itemVariants}>
             <p className="text-[clamp(1rem,1.35vw,1.16rem)] text-oil/74 leading-[1.78] mb-8 max-w-[640px] mx-auto lg:mx-0">
-              En Código Maison, transformamos la complejidad operativa en flujos de trabajo inteligentes.
-              Diseñamos ecosistemas tecnológicos que optimizan tu gestión, blindan tu infraestructura
-              y proyectan tu alcance hacia el futuro digital.
+              En Código Maison se transforma la complejidad operativa en flujos de trabajo inteligentes.
+              Se diseñan ecosistemas tecnológicos que optimizan la gestión empresarial, protegen la infraestructura
+              y proyectan el alcance de cada organización hacia el futuro digital.
             </p>
           </motion.div>
 
@@ -120,11 +120,11 @@ export default function Hero() {
                 <path d="M5 12h14" /><path d="M12 5l7 7-7 7" />
               </svg>
             </MagneticButton>
-            <MagneticButton href="#pricing" className="btn-outline min-h-14 inline-flex items-center justify-center gap-2.5 font-body font-extrabold text-[0.94rem] px-7 py-4 rounded-2xl border-2 border-electric/40 text-electric bg-electric/5 shadow-[0_14px_34px_rgba(0,207,255,0.08)] relative overflow-hidden isolate transition-all duration-300 hover:shadow-[0_18px_44px_rgba(0,207,255,0.2)] hover:bg-electric/10 hover:-translate-y-0.5">
+            <MagneticButton href="#planes" className="btn-outline min-h-14 inline-flex items-center justify-center gap-2.5 font-body font-extrabold text-[0.94rem] px-7 py-4 rounded-2xl border-2 border-electric/40 text-electric bg-electric/5 shadow-[0_14px_34px_rgba(0,207,255,0.08)] relative overflow-hidden isolate transition-all duration-300 hover:shadow-[0_18px_44px_rgba(0,207,255,0.2)] hover:bg-electric/10 hover:-translate-y-0.5">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
               </svg>
-              Restorant System
+              Planes y Presupuestos
             </MagneticButton>
           </motion.div>
 

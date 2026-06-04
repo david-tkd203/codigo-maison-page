@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 
 const links = [
-  { label: 'Restorant System', href: '#pricing' },
+  { label: 'Planes y Presupuestos', href: '#planes' },
   { label: 'Diferencial', href: '#value-prop' },
   { label: 'Experticia', href: '#expertise' },
   { label: 'Soluciones', href: '#solutions' },
@@ -26,7 +26,7 @@ export default function Navbar({ theme = 'light', onToggleTheme = () => {} }) {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 px-0 py-4 transition-all duration-[350ms]${scrolled ? ' bg-surface/92 backdrop-blur-[16px] shadow-[0_1px_24px_rgba(7,43,58,0.08)]' : ''}`}>
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-        <a href="#pricing" className="flex items-center gap-3">
+        <a href="#hero" className="flex items-center gap-3">
           <img
             src="/images/codigo_maison_logo_sin_fondo.png"
             alt="Código Maison"

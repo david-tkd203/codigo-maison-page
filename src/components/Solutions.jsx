@@ -5,8 +5,8 @@ import { sectionVariants, containerVariants, itemVariants, useAccessibleAnimatio
 
 const services = [
   {
-    title: 'Ecosistemas Web & Cloud',
-    text: 'Automatización de flujos críticos de negocio con aplicaciones web robustas, escalables y seguras desplegadas en la nube. Desarrollamos a medida cada solución para que se adapte perfectamente a tu operación.',
+    title: 'Ecosistemas Web y Cloud',
+    text: 'Automatización de flujos críticos de negocio mediante aplicaciones web robustas, escalables y seguras desplegadas en la nube. Cada solución se desarrolla a medida para adaptarse perfectamente a la operación de cada organización.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
@@ -15,7 +15,7 @@ const services = [
   },
   {
     title: 'Mobile Experience',
-    text: 'Apps nativas e híbridas de alto rendimiento que conectan tu marca con los usuarios donde sea que estén, con diseño centrado en la experiencia y desarrollo totalmente personalizado.',
+    text: 'Aplicaciones nativas e híbridas de alto rendimiento que conectan la marca con los usuarios donde sea que se encuentren, con diseño centrado en la experiencia y desarrollo totalmente personalizado.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/>
@@ -23,8 +23,8 @@ const services = [
     ),
   },
   {
-    title: 'Automatización de Procesos Inteligentes',
-    text: 'Transformamos tareas repetitivas en flujos automatizados impulsados por lógica inteligente. Diseñamos pipelines de automatización (RPA, BPM, workflows) que conectan tus sistemas, eliminan cuellos de botella y liberan a tu equipo para lo estratégico.',
+    title: 'Automatización Inteligente de Procesos',
+    text: 'Las tareas repetitivas se transforman en flujos automatizados impulsados por lógica inteligente. Se diseñan pipelines de automatización (RPA, BPM, workflows) que conectan los sistemas, eliminan cuellos de botella y liberan al equipo para abocarse a lo estratégico.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <circle cx="12" cy="12" r="3"/>
@@ -34,7 +34,7 @@ const services = [
   },
   {
     title: 'Sistemas de Gestión Empresarial (ERP)',
-    text: 'Desarrollamos plataformas de gestión integral totalmente a medida de tu negocio. Desde control de inventario y facturación hasta módulos de CRM, compras y reporting ejecutivo, creamos ecosistemas administrativos que centralizan toda tu operación.',
+    text: 'Se desarrollan plataformas de gestión integral completamente a medida de cada negocio. Desde control de inventario y facturación hasta módulos de CRM, compras y reporting ejecutivo, se crean ecosistemas administrativos que centralizan toda la operación.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
@@ -42,8 +42,8 @@ const services = [
     ),
   },
   {
-    title: 'Data Intelligence & Analytics',
-    text: 'Convertimos datos dispersos en decisiones inteligentes. Implementamos pipelines de datos, dashboards interactivos, tableros ejecutivos y sistemas de reporting automatizados que te dan visibilidad en tiempo real sobre cada aspecto de tu negocio.',
+    title: 'Data Intelligence y Analytics',
+    text: 'Los datos dispersos se convierten en decisiones inteligentes. Se implementan pipelines de datos, dashboards interactivos, tableros ejecutivos y sistemas de reporting automatizados que brindan visibilidad en tiempo real sobre cada aspecto del negocio.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
@@ -52,7 +52,7 @@ const services = [
   },
   {
     title: 'Consultoría en Ciberseguridad',
-    text: 'Blindaje y auditoría de activos digitales con un enfoque Security-by-Design. Integramos capas de protección en cada capa del sistema — desde la infraestructura hasta la aplicación — asegurando la continuidad y cumplimiento normativo de tu negocio.',
+    text: 'Blindaje y auditoría de activos digitales con un enfoque Security-by-Design. Se integran capas de protección en cada nivel del sistema — desde la infraestructura hasta la aplicación — asegurando la continuidad operativa y el cumplimiento normativo del negocio.',
     icon: (
       <svg viewBox="0 0 24 24" stroke="currentColor" fill="none" strokeWidth="1.5">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>
@@ -98,7 +98,7 @@ export default function Solutions() {
         <span className="section-tag">Servicios</span>
         <h2 className="section-title">Nuestras Soluciones</h2>
         <p className="section-subtitle mx-auto mb-12">
-          Desde el desarrollo de software a medida hasta la automatización inteligente de procesos — todo lo que tu negocio necesita para dar el salto digital.
+          Desde el desarrollo de software a medida hasta la automatización inteligente de procesos — todo lo que cada negocio necesita para dar el salto digital.
         </p>
       </div>
       <div className="max-w-[1200px] mx-auto px-6">

@@ -23,20 +23,20 @@ export default function Contact() {
 
     // ── Validaciones ──
     if (!form.name.trim() || !form.company.trim() || !form.message.trim()) {
-      setToast({ type: 'error', text: 'Completá los campos obligatorios.' });
+      setToast({ type: 'error', text: 'Complete los campos obligatorios.' });
       setTimeout(() => setToast(null), 3500);
       return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(form.email)) {
-      setToast({ type: 'error', text: 'Ingresá un correo electrónico válido.' });
+      setToast({ type: 'error', text: 'Ingrese un correo electrónico válido.' });
       setTimeout(() => setToast(null), 3500);
       return;
     }
 
     if (form.whatsapp && !/^[\d\s+]+$/.test(form.whatsapp)) {
-      setToast({ type: 'error', text: 'Ingresá un número de WhatsApp válido.' });
+      setToast({ type: 'error', text: 'Ingrese un número de WhatsApp válido.' });
       setTimeout(() => setToast(null), 3500);
       return;
     }
@@ -73,7 +73,7 @@ export default function Contact() {
 
       setToast({
         type: 'success',
-        text: '¡Mensaje enviado con éxito! Te contactaremos a la brevedad.',
+        text: 'Mensaje enviado con éxito. Nos comunicaremos a la brevedad.',
       });
       setForm(initial);
     } catch {
@@ -93,14 +93,14 @@ export default function Contact() {
         <span className="section-tag">Briefing de Proyecto</span>
         <h2 className="section-title">¿Listo para dar el siguiente paso?</h2>
         <p className="section-subtitle mx-auto mb-12">
-          Contanos tu desafío y diseñaremos la solución a tu medida.
+          Cuéntenos su desafío y diseñaremos la solución a su medida.
         </p>
       </div>
       <div className="max-w-[1200px] mx-auto px-6">
         <div className="grid lg:grid-cols-[1fr_1.3fr] gap-[3.75rem] items-start">
           <div className="bg-surface rounded-3xl border border-border-soft p-8">
             <h3 className="font-display text-[1.5rem] font-bold mb-4 text-oil">Conversemos</h3>
-            <p className="text-text-light leading-[1.7] mb-7">Cada proyecto comienza con una conversación. Completá el formulario y te responderemos en menos de 24 horas.</p>
+            <p className="text-text-light leading-[1.7] mb-7">Cada proyecto comienza con una conversación. Complete el formulario y se le responderá en menos de 24 horas.</p>
             <div className="flex items-center gap-3 mb-3.5 text-[0.9rem] text-text-light">
               <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-electric fill-none stroke-[1.5] flex-shrink-0">
                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
@@ -119,12 +119,12 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
                 <label htmlFor="field-name" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Nombre del Representante *</label>
-                <input id="field-name" name="name" value={form.name} onChange={handleChange} placeholder="Tu nombre" required
+                <input id="field-name" name="name" value={form.name} onChange={handleChange} placeholder="Su nombre" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
               <div className="mb-4">
-                <label htmlFor="field-company" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Empresa / Organización *</label>
-                <input id="field-company" name="company" value={form.company} onChange={handleChange} placeholder="Nombre de tu empresa" required
+                <label htmlFor="field-company" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Empresa u Organización *</label>
+                <input id="field-company" name="company" value={form.company} onChange={handleChange} placeholder="Nombre de su empresa" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
             </div>
@@ -133,7 +133,7 @@ export default function Contact() {
                 <label htmlFor="field-sector" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Sector Industrial</label>
                 <select id="field-sector" name="sector" value={form.sector} onChange={handleChange}
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
-                  <option value="">Seleccioná un sector</option>
+                  <option value="">Seleccione un sector</option>
                   <option value="logistica">Logística</option>
                   <option value="salud">Salud</option>
                   <option value="gastronomia">Gastronomía</option>
@@ -145,7 +145,7 @@ export default function Contact() {
                 <label htmlFor="field-project" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Tipo de Proyecto</label>
                 <select id="field-project" name="projectType" value={form.projectType} onChange={handleChange}
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
-                  <option value="">Seleccioná un tipo</option>
+                  <option value="">Seleccione un tipo</option>
                   <option value="logistica">Logística</option>
                   <option value="restaurante">Restaurante / Gastronomía</option>
                   <option value="salud">Salud / Clínicas</option>
@@ -156,7 +156,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="mb-4">
                 <label htmlFor="field-email" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Correo Electrónico *</label>
-                <input id="field-email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="correo@empresa.com" required
+                <input id="field-email" name="email" type="email" value={form.email} onChange={handleChange} placeholder="correo@suempresa.com" required
                   className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]" />
               </div>
               <div className="mb-4">
@@ -166,10 +166,10 @@ export default function Contact() {
               </div>
             </div>
             <div className="mb-4">
-              <label htmlFor="field-budget" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Rango de Presupuesto Estimado (Opcional)</label>
+                <label htmlFor="field-budget" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Rango de Presupuesto Estimado <span className="font-normal text-text-light">(opcional)</span></label>
               <select id="field-budget" name="budget" value={form.budget} onChange={handleChange}
                 className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)]">
-                <option value="">Seleccioná un rango</option>
+                  <option value="">Seleccione un rango</option>
                 <option value="menos-5k">Menos de $5,000 USD</option>
                 <option value="5k-15k">$5,000 - $15,000 USD</option>
                 <option value="15k-30k">$15,000 - $30,000 USD</option>
@@ -177,8 +177,8 @@ export default function Contact() {
               </select>
             </div>
             <div className="mb-4">
-              <label htmlFor="field-message" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Contanos sobre tu necesidad *</label>
-              <textarea id="field-message" name="message" value={form.message} onChange={handleChange} placeholder="Describí tu proyecto, desafío o idea..." required
+              <label htmlFor="field-message" className="block text-[0.82rem] font-semibold text-oil mb-1.5">Cuéntenos sobre su necesidad *</label>
+              <textarea id="field-message" name="message" value={form.message} onChange={handleChange} placeholder="Describa su proyecto, desafío o idea..." required
                 className="w-full px-4 py-3 border border-border rounded-sm bg-bg text-text font-body text-[0.9rem] outline-none transition-all duration-300 focus:border-electric focus:shadow-[0_0_0_3px_rgba(0,207,255,0.1)] min-h-28 resize-y" />
             </div>
             <button type="submit" disabled={sending}

@@ -1,22 +1,63 @@
 import { motion } from 'motion/react';
 import { containerVariants, itemVariants, useAccessibleAnimation } from '../lib/animations';
 
-const stats = [
-  { val: '48 hrs', label: 'implementación' },
-  { val: '100%', label: 'en la nube' },
-  { val: '24/7', label: 'soporte' },
-  { val: '1', label: 'plataforma única' },
-];
-
 const highlights = [
-  { icon: '📱', title: 'Carta Digital QR', desc: 'Actualizá tu menú al instante. Sin imprimir. Sin límites.' },
-  { icon: '🛵', title: 'Delivery + Local + Take Away', desc: 'Centralizá todos los canales de pedido en una pantalla.' },
-  { icon: '📊', title: 'Dashboard Tiempo Real', desc: 'Ventas, productos top, rendimiento del día al instante.' },
-  { icon: '📦', title: 'Inventario con Alertas', desc: 'Stock crítico, mermas y órdenes a proveedores automatizadas.' },
-  { icon: '💬', title: 'WhatsApp Integrado', desc: 'Confirmaciones, demoras y notificaciones al cliente vía WA.' },
-  { icon: '📲', title: 'App iOS + Android', desc: 'Tu propia app con pedidos, reservas y programa de fidelización.' },
-  { icon: '🎯', title: 'Promociones y Cupones', desc: 'Creá descuentos, combos y campañas en segundos.' },
-  { icon: '🔗', title: 'Redes Sociales + Pagos', desc: 'Integración con Instagram, Facebook y pasarela de pagos online.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M9 3v18" />
+      </svg>
+    ),
+    title: 'Carta Digital QR', desc: 'El menú se actualiza al instante, sin impresión y sin límites de modificaciones.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" /><line x1="3" y1="6" x2="21" y2="6" /><path d="M16 10a4 4 0 01-8 0" />
+      </svg>
+    ),
+    title: 'Delivery, Local y Take Away', desc: 'Todos los canales de pedido centralizados en una única plataforma.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M3 3v18h18" /><path d="M7 16l4-8 4 4 4-6" />
+      </svg>
+    ),
+    title: 'Dashboard en Tiempo Real', desc: 'Ventas, productos más vendidos y rendimiento diario al instante.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" /><circle cx="12" cy="12" r="2" />
+      </svg>
+    ),
+    title: 'Inventario con Alertas', desc: 'Stock crítico, mermas y órdenes a proveedores de forma automatizada.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+      </svg>
+    ),
+    title: 'WhatsApp Integrado', desc: 'Confirmaciones, demoras y notificaciones al cliente mediante mensajería automatizada.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <rect x="5" y="2" width="14" height="20" rx="2" /><line x1="12" y1="18" x2="12" y2="18" />
+      </svg>
+    ),
+    title: 'App iOS y Android', desc: 'Aplicación propia con pedidos, reservas y programa de fidelización incluido.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+      </svg>
+    ),
+    title: 'Promociones y Cupones', desc: 'Descuentos, combos y campañas promocionales configurables en segundos.' },
+  {
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
+        <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+      </svg>
+    ),
+    title: 'Redes Sociales y Pagos', desc: 'Integración con Instagram, Facebook y pasarela de pagos online integrada.' },
 ];
 
 const plans = [
@@ -78,8 +119,8 @@ const plans = [
     badge: null,
     subtitle: 'Desarrollo personalizado',
     features: [
-      'Diseñamos y desarrollamos soluciones tecnológicas creadas específicamente para la operación interna de tu negocio',
-      'Un sistema hecho a la medida de tu modelo de negocio particular',
+      'Soluciones tecnológicas creadas específicamente para la operación interna de cada negocio',
+      'Un sistema diseñado a la medida del modelo de negocio particular de cada organización',
     ],
   },
 ];
@@ -90,87 +131,7 @@ export default function Pricing() {
   return (
     <section className="bg-bg relative" id="pricing">
 
-      {/* ════════════════════════════════════════
-          HERO DE PRODUCTO
-          ════════════════════════════════════════ */}
-      <div className="relative overflow-hidden pb-10 pt-28">
-        <div className="hero-grid opacity-30" />
-        <div className="hero-orb hero-orb-a" style={{ opacity: 0.15 }} />
-        <div className="hero-orb hero-orb-b" style={{ opacity: 0.1 }} />
-
-        <div className="max-w-6xl mx-auto px-6 text-center relative z-[2]">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-flex items-center gap-2.5 bg-surface/90 border border-electric/28 rounded-full px-5 py-2.5 font-tech text-[0.7rem] text-oil tracking-widest uppercase mb-6 shadow-[0_14px_42px_rgba(0,207,255,0.12)]">
-            <span className="badge-dot" />
-            Restorant System — Lanzamiento 2026
-          </motion.div>
-
-          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="font-display text-[clamp(2.8rem,6.5vw,6.5rem)] font-black leading-[0.9] tracking-[-0.07em] text-oil mb-4">
-            El Sistema Operativo<br />
-            de tu <span className="text-electric">Restaurante</span>
-          </motion.h1>
-
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="text-[clamp(1rem,1.25vw,1.1rem)] text-oil/70 leading-[1.8] max-w-[620px] mx-auto mb-8">
-            Digitalizá cada aspecto de tu operación gastronómica en una sola plataforma.
-            Carta digital, pedidos, inventario, WhatsApp, app móvil, promociones y más.
-            Todo sincronizado en tiempo real.
-          </motion.p>
-
-          {/* ─── Stats ─── */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="flex justify-center gap-8 md:gap-12 mb-10 flex-wrap">
-            {stats.map((s) => (
-              <div key={s.val}>
-                <div className="font-display text-[2rem] font-black text-electric">{s.val}</div>
-                <div className="font-tech text-[0.65rem] text-oil/50 tracking-[1.5px] uppercase">{s.label}</div>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* ─── CTAs ─── */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35 }}
-            className="flex gap-4 flex-wrap justify-center mb-10">
-            <a href="#contact"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-br from-electric to-cyan-glow text-oil font-extrabold text-[0.94rem] px-8 py-4 rounded-2xl shadow-[0_18px_42px_rgba(0,207,255,0.22)] border border-electric/70 transition-all duration-300 hover:shadow-[0_22px_54px_rgba(0,207,255,0.28)] hover:-translate-y-0.5">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-              Solicitar Demo Gratis
-            </a>
-            <a href="#planes"
-              className="inline-flex items-center gap-2.5 bg-surface/85 text-oil font-extrabold text-[0.94rem] px-7 py-4 rounded-2xl border border-oil/14 shadow-[0_14px_34px_rgba(7,43,58,0.08)] transition-all duration-300 hover:border-electric/58 hover:shadow-[0_18px_44px_rgba(0,207,255,0.14)] hover:-translate-y-0.5">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42"/>
-              </svg>
-              Ver Planes
-            </a>
-          </motion.div>
-
-          {/* ─── Redes / Contacto directo ─── */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
-            className="flex items-center justify-center gap-6 text-[0.8rem] text-oil/50 flex-wrap">
-            <a href="mailto:contact@codigomaison.com" className="flex items-center gap-1.5 hover:text-electric transition-colors">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-              </svg>
-              contact@codigomaison.com
-            </a>
-            <span className="flex items-center gap-1.5">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-              </svg>
-              Santiago, Chile
-            </span>
-            <a href="#" className="flex items-center gap-1.5 hover:text-electric transition-colors">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                <path d="M22 4L15.5 19.5L11 10L2 6L21 4Z"/><path d="M15.5 19.5L20 22L22 4"/>
-              </svg>
-              @codigomaison
-            </a>
-          </motion.div>
-        </div>
-      </div>
+      <div className="pt-24"></div>
 
       {/* ════════════════════════════════════════
           HIGHLIGHTS
@@ -179,8 +140,8 @@ export default function Pricing() {
         <div className="max-w-6xl mx-auto px-6">
           <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="section-tag">Todo en Uno</span>
-            <h2 className="section-title">8 Funcionalidades que Transforman tu Restaurante</h2>
-            <p className="section-subtitle mx-auto">Gestioná cada área de tu operación sin múltiples sistemas ni integraciones costosas.</p>
+            <h2 className="section-title">8 Funcionalidades para la Gestión Gastronómica</h2>
+            <p className="section-subtitle mx-auto">Cada área de la operación se gestiona desde una única plataforma, sin sistemas dispersos ni integraciones costosas.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
@@ -188,7 +149,7 @@ export default function Pricing() {
               <motion.div key={h.title}
                 className="bg-surface rounded-xl border border-border-soft p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-electric/30 card-glow"
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.04 }}>
-                <span className="text-2xl mb-2.5 block">{h.icon}</span>
+                <span className="w-10 h-10 bg-electric/8 rounded-xl flex items-center justify-center mb-3.5 text-electric">{h.icon}</span>
                 <h3 className="font-display text-[0.95rem] font-bold text-oil mb-1.5">{h.title}</h3>
                 <p className="text-[0.8rem] text-text-light leading-[1.5]">{h.desc}</p>
               </motion.div>
@@ -204,9 +165,9 @@ export default function Pricing() {
         <div className="max-w-6xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <span className="section-tag">Planes y Presupuestos</span>
-            <h2 className="section-title">Elegí el Plan que Impulse tu Restaurante</h2>
+            <h2 className="section-title">El Plan que Impulsa su Restaurante</h2>
             <p className="section-subtitle mx-auto mb-8">
-              Desde la digitalización básica hasta una solución completa a medida. Todos incluyen instalación y capacitación.
+              Desde la digitalización básica hasta una solución completa a medida. Todos los planes incluyen instalación y capacitación.
             </p>
           </motion.div>
 
@@ -219,7 +180,7 @@ export default function Pricing() {
               5 UF por local <span className="text-text-light font-normal">(pago único)</span>
             </p>
             <p className="text-[0.85rem] text-text-light leading-relaxed">
-              Incluye: Configuración del sistema en el local, activación de cuenta y usuarios, implementación inicial, capacitación operativa básica, puesta en marcha del sistema y asesoramiento.
+              Incluye configuración del sistema en el local, activación de cuenta y usuarios, implementación inicial, capacitación operativa básica, puesta en marcha del sistema y asesoramiento continuo.
             </p>
           </motion.div>
         </div>

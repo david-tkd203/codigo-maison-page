@@ -4,10 +4,10 @@ import { motion } from 'motion/react';
 import { sectionVariants, containerVariants, itemVariants, useAccessibleAnimation } from '../lib/animations';
 
 const sectors = [
-  { label: 'Restaurantes & Gastronomía', pct: 44, desc: 'Optimizamos la experiencia y el control operativo del sector gastronómico.' },
-  { label: 'Logística & Supply Chain', pct: 30, desc: 'Eficiencia total en la cadena de suministro con trazabilidad en tiempo real.' },
-  { label: 'Clínicas & HealthTech', pct: 24, desc: 'Gestión de datos médicos con rigor técnico y cumplimiento normativo.' },
-  { label: 'Sectores Emergentes', pct: 12, desc: 'Soluciones para Hotelería, Propiedad Intelectual y más.' },
+  { label: 'Restaurantes y Gastronomía', pct: 44, desc: 'Optimización de la experiencia y el control operativo del sector gastronómico.' },
+  { label: 'Logística y Supply Chain', pct: 30, desc: 'Eficiencia total en la cadena de suministro con trazabilidad en tiempo real.' },
+  { label: 'Clínicas y HealthTech', pct: 24, desc: 'Gestión de datos médicos con rigor técnico y cumplimiento normativo.' },
+  { label: 'Sectores Emergentes', pct: 12, desc: 'Soluciones para hotelería, propiedad intelectual y más.' },
   { label: 'Otros', pct: 10, desc: 'Transformación digital a medida para cualquier industria.' },
 ];
 
