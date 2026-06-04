@@ -115,8 +115,8 @@ CORS_ALLOW_CREDENTIALS = True
 # Proxy (nginx)
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 CSRF_TRUSTED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS',
-    default='https://codigomaison.com,https://www.codigomaison.com',
+    'CSRF_TRUSTED_ORIGINS',
+    default='http://localhost:8080,https://codigomaison.com,https://www.codigomaison.com',
     cast=Csv(),
 )
 
