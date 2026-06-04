@@ -43,13 +43,13 @@ public/gif/*.mov
 .atl/
 .opencode/
 
-# Python / Backend (no longer used)
+# Python / Backend
 __pycache__/
 *.pyc
 *.pyo
 *.sqlite3
-backend/
-requirements.txt
+backend/db.sqlite3
+backend/staticfiles/
 
 # Artifacts / notes
 firma.html

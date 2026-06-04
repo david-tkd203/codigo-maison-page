@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { sectionVariants, useAccessibleAnimation } from '../lib/animations';
-import emailjs from '@emailjs/browser';
 
 const initial = {
   name: '', company: '', sector: '', projectType: '', budget: '', message: '',
   email: '', whatsapp: '',
 };
 
-export default function Contact() {
+const API_URL = import.meta.env.DEV
+  ? 'http://localhost:8000/api'
+  : '/api';
+
+export default function Contact({ consentGiven = false }) {
   const [form, setForm] = useState(initial);
   const [sending, setSending] = useState(false);
   const [toast, setToast] = useState(null);
@@ -41,35 +44,28 @@ export default function Contact() {
       return;
     }
 
-    // ── Datos comunes para ambas plantillas ──
-    const templateParams = {
+    const payload = {
       name: form.name.trim(),
       company: form.company.trim(),
-      sector: form.sector || 'No especificado',
-      whatsapp: form.whatsapp || 'No proporcionado',
+      sector: form.sector || '',
+      whatsapp: form.whatsapp || '',
       email: form.email.trim(),
-      projectType: form.projectType || 'No especificado',
-      budget: form.budget || 'No especificado',
+      project_type: form.projectType || '',
+      investment: form.budget || '',
       message: form.message.trim(),
+      consent: consentGiven,
     };
-
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const templateTeam = import.meta.env.VITE_EMAILJS_TEMPLATE_TEAM;
-    const templateClient = import.meta.env.VITE_EMAILJS_TEMPLATE_CLIENT;
-
-    // Forzar destinatarios desde el código (anula lo configurado en el dashboard)
-    const teamParams = { ...templateParams, to_email: 'dnanculeo@codigomaison.com,cassiel@codigomaison.com,icamus@codigomaison.com' };
-    const clientParams = { ...templateParams, to_email: form.email.trim() };
 
     setSending(true);
 
     try {
-      // ── Disparar ambos correos en paralelo ──
-      await Promise.all([
-        emailjs.send(serviceId, templateTeam, teamParams, publicKey),
-        emailjs.send(serviceId, templateClient, clientParams, publicKey),
-      ]);
+      const res = await fetch(`${API_URL}/leads/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error('Error en el servidor');
 
       setToast({
         type: 'success',
@@ -79,7 +75,7 @@ export default function Contact() {
     } catch {
       setToast({
         type: 'error',
-        text: 'Error al enviar. Escribinos directamente a contact@codigomaison.com',
+        text: 'Error al enviar. Escríbanos directamente a contact@codigomaison.com',
       });
     } finally {
       setSending(false);

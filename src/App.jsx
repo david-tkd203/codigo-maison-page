@@ -1,10 +1,12 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState, useCallback } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ValueProposition from './components/ValueProposition'
 import Expertise from './components/Expertise'
 import Solutions from './components/Solutions'
 import Pricing from './components/Pricing'
+import CookieConsent from './components/CookieConsent'
+import useVisitorTracking from './hooks/useVisitorTracking'
 import Footer from './components/Footer'
 
 const Methodology = lazy(() => import('./components/Methodology'))
@@ -21,6 +23,7 @@ const getInitialTheme = () => {
 
 function App() {
   const [theme, setTheme] = useState(getInitialTheme)
+  const [consentGiven, setConsentGiven] = useState(null)
 
   useEffect(() => {
     const root = document.documentElement
@@ -32,6 +35,13 @@ function App() {
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
   }
+
+  const handleConsent = useCallback((accepted) => {
+    setConsentGiven(accepted)
+  }, [])
+
+  // Activar tracking solo si se aceptaron las cookies
+  useVisitorTracking(consentGiven === true, window.location.pathname)
 
   return (
     <>
@@ -46,9 +56,10 @@ function App() {
           <Methodology />
         </Suspense>
         <Suspense fallback={<div className="min-h-100" />}>
-          <Contact />
+          <Contact consentGiven={consentGiven === true} />
         </Suspense>
       </main>
+      <CookieConsent onAccept={handleConsent} />
       <Footer />
     </>
   )

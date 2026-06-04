@@ -1,23 +1,69 @@
 # ============================================================
-# Código Maison — Docker Compose
+# Código Maison — Docker Compose (Producción)
 # ============================================================
 
 services:
+  # ── Frontend (Nginx + static SPA) ──
   web:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        VITE_EMAILJS_PUBLIC_KEY: ${VITE_EMAILJS_PUBLIC_KEY:?err}
-        VITE_EMAILJS_SERVICE_ID: ${VITE_EMAILJS_SERVICE_ID:?err}
-        VITE_EMAILJS_TEMPLATE_TEAM: ${VITE_EMAILJS_TEMPLATE_TEAM:?err}
-        VITE_EMAILJS_TEMPLATE_CLIENT: ${VITE_EMAILJS_TEMPLATE_CLIENT:?err}
     restart: unless-stopped
     expose:
       - "80"
     networks:
       - dokploy-network
+      - internal
+    depends_on:
+      backend:
+        condition: service_started
+
+  # ── Backend (Django + Gunicorn) ──
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    expose:
+      - "8000"
+    networks:
+      - internal
+    env_file:
+      - .env
+    environment:
+      DJANGO_DEBUG: "False"
+      ALLOWED_HOSTS: "codigomaison.com,www.codigomaison.com,localhost,backend"
+      CORS_ALLOWED_ORIGINS: "https://codigomaison.com,https://www.codigomaison.com"
+      DATABASE_URL: "postgres://codigomaison:${DB_PASSWORD:?err}@db:5432/codigomaison"
+    depends_on:
+      db:
+        condition: service_healthy
+
+  # ── Base de Datos (PostgreSQL) ──
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    expose:
+      - "5432"
+    networks:
+      - internal
+    environment:
+      POSTGRES_DB: codigomaison
+      POSTGRES_USER: codigomaison
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?err}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U codigomaison -d codigomaison"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   dokploy-network:
     external: true
+  internal:
+    driver: bridge
+
+volumes:
+  pgdata:
