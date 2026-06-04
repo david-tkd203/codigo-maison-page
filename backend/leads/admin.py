@@ -1,5 +1,12 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from .models import Lead, Visit
+
+
+# Personalizar branding del admin
+admin.site.site_header = 'Código Maison — Panel de Gestión'
+admin.site.site_title = 'Código Maison'
+admin.site.index_title = 'Bienvenido al panel de administración'
 
 
 @admin.register(Lead)
