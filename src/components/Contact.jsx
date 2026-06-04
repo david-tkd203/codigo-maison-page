@@ -103,11 +103,23 @@ export default function Contact({ consentGiven = false }) {
               </svg>
               <span>contact@codigomaison.com</span>
             </div>
-            <div className="flex items-center gap-3 text-[0.9rem] text-text-light">
+            <div className="flex items-center gap-3 mb-3.5 text-[0.9rem] text-text-light">
               <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-electric fill-none stroke-[1.5] flex-shrink-0">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
               </svg>
-              <span>San Antonio 385 Of. 201, Santiago Centro, Chile</span>
+              <span>Santiago, Chile</span>
+            </div>
+            <div className="flex items-center gap-3 mb-3.5 text-[0.9rem] text-text-light">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-electric fill-none stroke-[1.5] flex-shrink-0">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+              <a href="https://wa.me/56973850360" target="_blank" rel="noopener noreferrer" className="hover:text-electric transition-colors">+56 9 7385 0360</a>
+            </div>
+            <div className="flex items-center gap-3 text-[0.9rem] text-text-light">
+              <svg viewBox="0 0 24 24" className="w-5 h-5 stroke-electric fill-none stroke-[1.5] flex-shrink-0">
+                <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+              </svg>
+              <a href="https://wa.me/56932353829" target="_blank" rel="noopener noreferrer" className="hover:text-electric transition-colors">+56 9 3235 3829</a>
             </div>
           </div>
 
