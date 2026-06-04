@@ -9,7 +9,6 @@
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Space+Grotesk:wght@400;700&display=swap');
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
 
@@ -112,29 +111,10 @@
             btn.textContent = '\u23f3 Generando...';
             btn.disabled = true;
 
-            const target = document.getElementById('firma-captura');
-
-            html2canvas(target, {
-                backgroundColor: '#FFFFFF',
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                removeContainer: true
-            }).then(canvas => {
-                const image = canvas.toDataURL('image/png');
-                const nombre = document.getElementById('input-nombres')?.value || 'firma';
-                const apellido = document.getElementById('input-apellidos')?.value || '';
-                const link = document.createElement('a');
-                link.download = `Firma_${nombre}_${apellido || ''}.png`;
-                link.href = image;
-                link.click();
-                btn.textContent = '\u2b07 Descargar Firma PNG';
-                btn.disabled = false;
-            }).catch(() => {
-                alert('Error al generar la imagen. Intente de nuevo.');
-                btn.textContent = '\u2b07 Descargar Firma PNG';
-                btn.disabled = false;
-            });
+            // Agregar ?descargar=1 a la URL actual y redirigir
+            const url = new URL(window.location.href);
+            url.searchParams.set('descargar', '1');
+            window.location.href = url.toString();
         });
 
         // Auto-enviar al presionar Enter
