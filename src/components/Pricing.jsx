@@ -64,8 +64,8 @@ const highlights = [
 const plans = [
   {
     title: 'Plan Plus',
-    priceMonthly: '6 UF',
-    priceAnnual: '4 UF',
+    priceMonthly: '6 UF + IVA',
+    priceAnnual: '4 UF + IVA',
     badge: null,
     subtitle: 'Digitalización y gestión básica',
     features: [
@@ -89,8 +89,8 @@ const plans = [
   },
   {
     title: 'Plan Pro',
-    priceMonthly: '10 UF',
-    priceAnnual: '8 UF',
+    priceMonthly: '10 UF + IVA',
+    priceAnnual: '8 UF + IVA',
     badge: 'Recomendado',
     subtitle: 'Gestión avanzada y expansión digital',
     features: [
