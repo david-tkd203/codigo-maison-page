@@ -13,6 +13,7 @@ export default function useVisitorTracking(consentGiven, page = '/') {
     const data = {
       page,
       referrer: document.referrer || '',
+      consent_given: true,
     };
 
     fetch(`${API_URL}/track/`, {
