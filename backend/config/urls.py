@@ -10,6 +10,7 @@ ADMIN_PREFIX = config('ADMIN_URL', default='gestion-codigomaison')
 
 urlpatterns = [
     path(f'{ADMIN_PREFIX}/', admin.site.urls),
+    path(f'{ADMIN_PREFIX}/firma/', include('leads.admin_urls')),
     path('api/', include('leads.urls')),
 ]
 

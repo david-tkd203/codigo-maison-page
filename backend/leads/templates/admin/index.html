@@ -1,0 +1,19 @@
+{% extends "admin/index.html" %}
+{% load i18n %}
+
+{% block content %}
+<div style="margin-bottom: 20px;">
+    <a href="firma/"
+       style="display: inline-flex; align-items: center; gap: 8px;
+              background: #072B3A; color: #6FFBFF; padding: 12px 24px;
+              border: 1px solid #00CFFF; border-radius: 6px;
+              font-family: 'Orbitron', sans-serif; font-size: 11px;
+              font-weight: bold; letter-spacing: 1px; text-transform: uppercase;
+              text-decoration: none; transition: all 0.3s;"
+       onmouseover="this.style.background='#00CFFF'; this.style.color='#072B3A';"
+       onmouseout="this.style.background='#072B3A'; this.style.color='#6FFBFF';">
+        ⚡ Generar Firma Corporativa
+    </a>
+</div>
+{{ block.super }}
+{% endblock %}

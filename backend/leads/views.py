@@ -1,7 +1,4 @@
-from django.contrib.admin.views.decorators import staff_member_required
-from django.shortcuts import render
-from django.utils.decorators import method_decorator
-from django.views import View
+
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from .models import Lead, Visit
@@ -98,31 +95,4 @@ class DashboardStatsAPIView(generics.ListAPIView):
         })
 
 
-def capitalizar(texto):
-    """Capitaliza cada palabra de un texto."""
-    if not texto:
-        return ''
-    return ' '.join(p.capitalize() for p in texto.strip().split())
 
-
-@method_decorator(staff_member_required(login_url='admin:login'), name='dispatch')
-class FirmaView(View):
-    """Generador de firmas corporativas — protegido por staff login."""
-
-    def get(self, request):
-        context = {}
-
-        nombres = request.GET.get('nombres', '').strip()
-        apellidos = request.GET.get('apellidos', '').strip()
-        cargo = request.GET.get('cargo', '').strip()
-        telefono = request.GET.get('telefono', '').strip()
-        correo = request.GET.get('correo', '').strip()
-
-        if nombres or apellidos:
-            context['nombres'] = capitalizar(nombres)
-            context['apellidos'] = capitalizar(apellidos)
-            context['cargo'] = capitalizar(cargo) if cargo else ''
-            context['telefono'] = telefono
-            context['correo'] = correo.lower() if correo else ''
-
-        return render(request, 'leads/firma.html', context)
