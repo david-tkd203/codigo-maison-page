@@ -326,7 +326,7 @@ export default function Pricing() {
             <h3 className="font-display text-[1rem] font-bold text-oil mb-2">Costo de Instalación Base</h3>
             <p className="text-[0.85rem] text-electric font-semibold mb-1">Aplica a Plan Plus y Plan Pro</p>
             <p className="text-[0.95rem] text-electric font-semibold mb-2">
-              5 UF por local <span className="text-text-light font-normal">(pago único)</span>
+              5 UF + IVA por local <span className="text-text-light font-normal">(pago único)</span>
             </p>
           </motion.div>
         </div>
