@@ -192,7 +192,7 @@
                       <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
                         <tr>
                           <td valign="top" style="padding-right: 15px; vertical-align: top;">
-                            <img src="https://codigomaison.com/images/codigo_maison_logo_sin_fondo.png" alt="Código Maison" width="75" style="display: block; border: 0; max-width: 75px; height: auto;" />
+                            <img id="logo-firma" src="https://codigomaison.com/images/logo-firma.png" alt="Código Maison" width="75" style="display: block; border: 0; max-width: 75px; height: auto;" />
                           </td>
                           <td valign="top" style="border-left: 2px solid #00CFFF; padding-left: 15px; vertical-align: top;">
                             <table cellpadding="0" cellspacing="0" border="0" style="border-collapse: collapse;">
@@ -250,24 +250,44 @@
     </div>
 
     <script>
+        // Precargar el logo para que html2canvas lo capture
+        const logoImg = document.getElementById('logo-firma');
+        if (logoImg && !logoImg.complete) {
+            logoImg.onload = () => console.log('Logo cargado');
+        }
+
         document.getElementById('btnDescargaFirma')?.addEventListener('click', function() {
             const target = document.getElementById('firma-captura');
             if (!target) return;
-            html2canvas(target, {
-                backgroundColor: "#FFFFFF",
-                scale: 2,
-                useCORS: true,
-                logging: false,
-                removeContainer: true
-            }).then(canvas => {
-                const image = canvas.toDataURL("image/png");
-                const link = document.createElement('a');
-                const nombre = document.getElementById('input-nombres')?.value || 'firma';
-                const apellido = document.getElementById('input-apellidos')?.value || '';
-                link.download = `Firma_${nombre}_${apellido}.png`;
-                link.href = image;
-                link.click();
-            });
+            const btn = this;
+            btn.textContent = '⏳ Generando...';
+            btn.disabled = true;
+
+            // Pequeña espera para asegurar que las imágenes se rendericen
+            setTimeout(() => {
+                html2canvas(target, {
+                    backgroundColor: "#FFFFFF",
+                    scale: 2,
+                    useCORS: true,
+                    logging: false,
+                    removeContainer: true,
+                    allowTaint: false,
+                }).then(canvas => {
+                    const image = canvas.toDataURL("image/png");
+                    const link = document.createElement('a');
+                    const nombre = document.getElementById('input-nombres')?.value || 'firma';
+                    const apellido = document.getElementById('input-apellidos')?.value || '';
+                    link.download = `Firma_${nombre}_${apellido}.png`;
+                    link.href = image;
+                    link.click();
+                    btn.textContent = '⬇ Descargar Firma PNG';
+                    btn.disabled = false;
+                }).catch(err => {
+                    alert('Error al generar la firma: ' + err);
+                    btn.textContent = '⬇ Descargar Firma PNG';
+                    btn.disabled = false;
+                });
+            }, 500);
         });
 
         // Auto-enviar al presionar Enter
