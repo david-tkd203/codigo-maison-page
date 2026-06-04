@@ -24,9 +24,10 @@ RUN mkdir -p frontend_dist staticfiles && \
 
 EXPOSE 8000
 
-# Migrar y arrancar
+# Migrar, crear admin y arrancar
 CMD python manage.py migrate --noinput && \
     python manage.py collectstatic --noinput --clear 2>/dev/null; \
+    python manage.py ensure_admin; \
     exec gunicorn config.wsgi:application \
     --bind 0.0.0.0:8000 \
     --workers 4 \
