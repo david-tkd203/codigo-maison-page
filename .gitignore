@@ -36,6 +36,11 @@ pnpm-debug.log*
 # Raw video files (keep compressed .mp4 only)
 public/gif/*.MOV
 public/gif/*.mov
+public/video/*.MOV
+public/video/*.mov
+
+# Cookies de prueba local
+cookies.txt
 
 # Local agent/config directories
 .agents/

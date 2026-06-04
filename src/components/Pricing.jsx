@@ -209,9 +209,9 @@ export default function Pricing() {
                     loop
                     playsInline
                     preload="auto"
-                    poster="/images/poster-video.jpg"
+                    poster="/images/poster-promo.jpg"
                   >
-                    <source src="/video/video_codigomaison.mp4" type="video/mp4" />
+                    <source src="/video/video_promocion.mp4" type="video/mp4" />
                   </video>
 
                   {/* ─── GLITCH OVERLAY (visible antes de reproducir) ─── */}
