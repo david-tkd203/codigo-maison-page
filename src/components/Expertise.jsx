@@ -8,7 +8,7 @@ const sectors = [
   { label: 'Logística y Supply Chain', pct: 30, desc: 'Eficiencia total en la cadena de suministro con trazabilidad en tiempo real.' },
   { label: 'Clínicas y HealthTech', pct: 24, desc: 'Gestión de datos médicos con rigor técnico y cumplimiento normativo.' },
   { label: 'Sectores Emergentes', pct: 12, desc: 'Soluciones para hotelería, propiedad intelectual y más.' },
-  { label: 'Otros', pct: 10, desc: 'Transformación digital a medida para cualquier industria.' },
+  { label: 'Otros', pct: 10, desc: 'Soluciones tecnológicas a medida para industrias.' },
 ];
 
 export default function Expertise() {

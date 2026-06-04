@@ -179,9 +179,6 @@ export default function Pricing() {
             <p className="text-[0.95rem] text-electric font-semibold mb-2">
               5 UF por local <span className="text-text-light font-normal">(pago único)</span>
             </p>
-            <p className="text-[0.85rem] text-text-light leading-relaxed">
-              Incluye configuración del sistema en el local, activación de cuenta y usuarios, implementación inicial, capacitación operativa básica, puesta en marcha del sistema y asesoramiento continuo.
-            </p>
           </motion.div>
         </div>
 
