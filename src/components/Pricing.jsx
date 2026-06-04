@@ -2,6 +2,57 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { containerVariants, itemVariants, useAccessibleAnimation } from '../lib/animations';
 
+/* ─── SVG Brand Mark ─── */
+function BrandMark({ tier }) {
+  const colors = {
+    plus: { hex: '#00CFFF', label: 'PLUS' },
+    pro: { hex: '#6FFBFF', label: 'PRO' },
+    partner: { hex: '#00CFFF', label: 'PRT' },
+  };
+  const c = colors[tier] || colors.plus;
+
+  return (
+    <svg viewBox="0 0 48 48" className="w-10 h-10" fill="none">
+      {/* Hexágono exterior */}
+      <defs>
+        <linearGradient id={`grad-${tier}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor={c.hex} stopOpacity="0.3" />
+          <stop offset="100%" stopColor={c.hex} stopOpacity="0.05" />
+        </linearGradient>
+      </defs>
+      <polygon
+        points="24 3 44 13.5 44 34.5 24 45 4 34.5 4 13.5"
+        fill={`url(#grad-${tier})`}
+        stroke={c.hex}
+        strokeWidth="1.5"
+        strokeOpacity="0.6"
+      />
+      {/* Líneas internas decorativas */}
+      <polygon
+        points="24 8 39 16 39 32 24 40 9 32 9 16"
+        stroke={c.hex}
+        strokeWidth="0.5"
+        strokeOpacity="0.2"
+      />
+      {/* Círculo central */}
+      <circle cx="24" cy="24" r="8" stroke={c.hex} strokeWidth="1" strokeOpacity="0.7" fill={c.hex} fillOpacity="0.1" />
+      {/* Texto "CM" */}
+      <text x="24" y="27" textAnchor="middle" fill={c.hex} fontSize="11" fontWeight="900" fontFamily="'Orbitron',monospace" letterSpacing="1">
+        CM
+      </text>
+    </svg>
+  );
+}
+
+/* ─── "+IVA" Badge ─── */
+function IVABadge() {
+  return (
+    <span className="inline-flex items-center gap-1 bg-electric/10 text-electric font-tech text-[0.55rem] font-bold tracking-[1.5px] uppercase px-2 py-0.5 rounded-sm border border-electric/20 ml-2">
+      + IVA
+    </span>
+  );
+}
+
 const highlights = [
   {
     icon: (
@@ -63,9 +114,10 @@ const highlights = [
 
 const plans = [
   {
+    tier: 'plus',
     title: 'Plan Plus',
-    priceMonthly: '6 UF + IVA',
-    priceAnnual: '4 UF + IVA',
+    priceMonthly: '6 UF',
+    priceAnnual: '4 UF',
     badge: null,
     subtitle: 'Digitalización y gestión básica',
     features: [
@@ -88,9 +140,10 @@ const plans = [
     ],
   },
   {
+    tier: 'pro',
     title: 'Plan Pro',
-    priceMonthly: '10 UF + IVA',
-    priceAnnual: '8 UF + IVA',
+    priceMonthly: '10 UF',
+    priceAnnual: '8 UF',
     badge: 'Recomendado',
     subtitle: 'Gestión avanzada y expansión digital',
     features: [
@@ -114,6 +167,7 @@ const plans = [
     ],
   },
   {
+    tier: 'partner',
     title: 'Plan Partner',
     price: 'A cotizar',
     period: 'Solución a medida',
@@ -322,11 +376,21 @@ export default function Pricing() {
 
           {/* Instalación Base */}
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-            className="bg-surface border border-electric/20 rounded-xl p-6 mb-10 max-w-3xl mx-auto text-left">
-            <h3 className="font-display text-[1rem] font-bold text-oil mb-2">Costo de Instalación Base</h3>
+            className="bg-surface border border-electric/20 rounded-xl p-6 mb-12 max-w-3xl mx-auto text-left relative overflow-hidden">
+            {/* Línea decorativa superior */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-electric/0 via-electric to-electric/0" />
+            <h3 className="font-display text-[1rem] font-bold text-oil mb-2">
+              <span className="inline-flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-electric">
+                  <rect x="3" y="3" width="18" height="18" rx="2" /><line x1="9" y1="9" x2="15" y2="15" /><line x1="15" y1="9" x2="9" y2="15" />
+                </svg>
+                Costo de Instalación Base
+              </span>
+            </h3>
             <p className="text-[0.85rem] text-electric font-semibold mb-1">Aplica a Plan Plus y Plan Pro</p>
             <p className="text-[0.95rem] text-electric font-semibold mb-2">
-              5 UF + IVA por local <span className="text-text-light font-normal">(pago único)</span>
+              5 UF <IVABadge /> <span className="text-text-light font-normal">por local</span>
+              <span className="text-text-light font-normal"> (pago único)</span>
             </p>
           </motion.div>
         </div>
@@ -337,59 +401,102 @@ export default function Pricing() {
             variants={containerVariants}
             {...animProps}
           >
-            {plans.map((plan) => (
-              <motion.div
-                key={plan.title}
-                variants={itemVariants}
-                className={`rounded-xl border p-9 transition-all duration-[400ms] card-glow pointer-track ${
-                  plan.badge
-                    ? 'bg-surface border-electric/30 shadow-glow md:scale-[1.03]'
-                    : 'bg-surface border-border-soft hover:shadow-lg hover:-translate-y-1.5'
-                }`}
-              >
-                {plan.badge && (
-                  <span className="inline-block bg-electric text-oil font-tech text-[0.6rem] font-bold tracking-[1.5px] uppercase px-3 py-1 rounded-full mb-4">
-                    {plan.badge}
-                  </span>
-                )}
-                <h3 className="font-display text-[1.2rem] font-bold text-oil mb-1">{plan.title}</h3>
-                {plan.subtitle && (
-                  <p className="text-[0.8rem] text-electric font-semibold mb-4">{plan.subtitle}</p>
-                )}
+            {plans.map((plan) => {
+              const isPro = plan.tier === 'pro';
+              const isPartner = plan.tier === 'partner';
 
-                {plan.priceMonthly && plan.priceAnnual ? (
-                  <div className="mb-6 pb-5 border-b border-border space-y-1">
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display text-[2.2rem] font-extrabold text-oil leading-none">{plan.priceMonthly}</span>
-                      <span className="text-[0.85rem] text-text-light">/mes</span>
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="font-display text-[1.6rem] font-extrabold text-electric leading-none">{plan.priceAnnual}</span>
-                      <span className="text-[0.85rem] text-text-light">/mes · Plan Anual</span>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-baseline gap-2 mb-6 pb-5 border-b border-border">
-                    <span className="font-display text-[2.2rem] font-extrabold text-oil leading-none">{plan.price}</span>
-                    <span className="text-[0.85rem] text-text-light">{plan.period}</span>
-                  </div>
-                )}
-
-                <ul className="mb-7">
-                  {plan.features.map((f) => (
-                    <li key={f} className="text-[0.85rem] text-text-light py-1.5 border-b border-oil/4 last:border-none last:font-bold last:text-oil leading-[1.5]">
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#contact"
-                  className="block text-center bg-electric text-oil font-bold text-[0.9rem] px-6 py-3 rounded-sm transition-all hover:shadow-[0_0_24px_rgba(0,207,255,0.3)] hover:-translate-y-0.5"
+              return (
+                <motion.div
+                  key={plan.title}
+                  variants={itemVariants}
+                  className={`rounded-xl border p-0 transition-all duration-[400ms] card-glow pointer-track relative overflow-hidden ${
+                    isPro
+                      ? 'bg-surface border-electric/30 shadow-glow md:scale-[1.03]'
+                      : 'bg-surface border-border-soft hover:shadow-lg hover:-translate-y-1.5'
+                  }`}
                 >
-                  Solicitar Presupuesto
-                </a>
-              </motion.div>
-            ))}
+                  {/* ─── Borde gradiente superior ─── */}
+                  <div className={`h-[3px] w-full bg-gradient-to-r ${
+                    isPro
+                      ? 'from-electric via-cyan-glow to-electric'
+                      : 'from-electric/40 via-electric/80 to-electric/40'
+                  }`} />
+
+                  {/* ─── Header con Brand Mark ─── */}
+                  <div className="flex items-center gap-4 px-7 pt-7 pb-4">
+                    <BrandMark tier={plan.tier} />
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <h3 className="font-display text-[1.15rem] font-bold text-oil">{plan.title}</h3>
+                        {plan.badge && (
+                          <span className="inline-block bg-electric text-oil font-tech text-[0.55rem] font-bold tracking-[1.5px] uppercase px-2.5 py-0.5 rounded-full">
+                            {plan.badge}
+                          </span>
+                        )}
+                      </div>
+                      {plan.subtitle && (
+                        <p className="text-[0.75rem] text-electric font-semibold mt-0.5">{plan.subtitle}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* ─── Precios ─── */}
+                  {plan.priceMonthly && plan.priceAnnual ? (
+                    <div className="px-7 pb-5 border-b border-border">
+                      {/* Mensual */}
+                      <div className="mb-2">
+                        <span className="text-[0.65rem] text-text-light font-tech tracking-[1px] uppercase">Plan Mensual</span>
+                        <div className="flex items-baseline gap-1 mt-0.5">
+                          <span className="font-display text-[2rem] font-extrabold text-oil leading-none">{plan.priceMonthly}</span>
+                          <IVABadge />
+                          <span className="text-[0.8rem] text-text-light ml-1">/mes</span>
+                        </div>
+                      </div>
+                      {/* Anual */}
+                      <div>
+                        <span className="text-[0.65rem] text-text-light font-tech tracking-[1px] uppercase">Plan Anual</span>
+                        <div className="flex items-baseline gap-1 mt-0.5">
+                          <span className="font-display text-[1.4rem] font-extrabold text-electric leading-none">{plan.priceAnnual}</span>
+                          <IVABadge />
+                          <span className="text-[0.8rem] text-text-light ml-1">/mes</span>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="px-7 pb-5 border-b border-border">
+                      <div className="flex items-baseline gap-2 mt-1">
+                        <span className="font-display text-[2rem] font-extrabold text-oil leading-none">{plan.price}</span>
+                        <span className="text-[0.8rem] text-electric font-semibold">— {plan.period}</span>
+                      </div>
+                      <p className="text-[0.7rem] text-text-light mt-1">Presupuesto personalizado según requerimientos</p>
+                    </div>
+                  )}
+
+                  {/* ─── Features ─── */}
+                  <ul className="px-7 py-5 space-y-0.5">
+                    {plan.features.map((f) => (
+                      <li key={f} className="text-[0.8rem] text-text-light py-1.5 border-b border-oil/4 last:border-none last:font-bold last:text-oil leading-[1.5]">
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* ─── CTA ─── */}
+                  <div className="px-7 pb-7">
+                    <a
+                      href="#contact"
+                      className={`block text-center font-bold text-[0.85rem] px-6 py-3 rounded-sm transition-all duration-300 ${
+                        isPro
+                          ? 'bg-electric text-oil hover:shadow-[0_0_24px_rgba(0,207,255,0.3)]'
+                          : 'bg-oil text-electric border border-electric/20 hover:bg-electric hover:text-oil'
+                      } hover:-translate-y-0.5`}
+                    >
+                      {isPartner ? 'Conversemos' : 'Solicitar Presupuesto'}
+                    </a>
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </div>
