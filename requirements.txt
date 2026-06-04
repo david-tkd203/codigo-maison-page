@@ -7,3 +7,4 @@ whitenoise==6.*
 psycopg2-binary==2.*
 python-decouple==3.*
 gunicorn==23.*
+Pillow==11.*

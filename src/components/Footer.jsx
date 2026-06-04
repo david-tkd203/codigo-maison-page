@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h4 className="text-white font-tech text-[0.75rem] font-medium uppercase tracking-widest mb-4">Contacto</h4>
-            <a href="mailto:contact@codigomaison.com" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">contact@codigomaison.com</a>
+            <a href="https://wa.me/56973850360" target="_blank" rel="noopener noreferrer" className="block text-[0.85rem] text-white/55 mb-2.5 transition-colors hover:text-electric">+56 9 7385 0360</a>
             <span className="block text-[0.85rem] text-white/55 mb-2.5">San Antonio 385 Of. 201, Santiago Centro, Chile</span>
           </div>
         </div>
