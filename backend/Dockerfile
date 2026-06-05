@@ -12,9 +12,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg62-turbo-dev zlib1g-dev libwebp-dev libfreetype6-dev liblcms2-dev && \
     rm -rf /var/lib/apt/lists/*
 
-# Instalar dependencias Python
+# Instalar dependencias Python (incluye Pillow de forma expl\u00edcita)
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir Pillow
 
 # Verificar que Pillow est\u00e9 disponible (si falla, el build falla visiblemente)
 RUN python -c "from PIL import Image; print('Pillow OK:', Image.__version__)"
