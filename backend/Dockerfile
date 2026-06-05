@@ -14,7 +14,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Instalar dependencias Python
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Verificar que Pillow est\u00e9 disponible (si falla, el build falla visiblemente)
+RUN python -c "from PIL import Image; print('Pillow OK:', Image.__version__)"
 
 # Copiar código
 COPY . .
