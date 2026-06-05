@@ -5,7 +5,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import path
-from PIL import Image, ImageDraw, ImageFont
 from django.conf import settings
 
 
@@ -42,6 +41,14 @@ def firma_view(request):
 @staff_member_required
 def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
     """Genera la firma como PNG con Pillow y la devuelve como descarga."""
+    # Import condicional: Pillow es opcional, el admin no debe crashear si falta
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError:
+        return HttpResponse(
+            'Pillow no est\u00e1 instalado. Consulte al administrador.',
+            content_type='text/plain; charset=utf-8', status=501)
+
     logo_path = os.path.join(settings.BASE_DIR.parent, 'public', 'images', 'logo-firma.png')
 
     # Escala base (x2 para retina)
@@ -56,7 +63,6 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
     ELECTRIC = (0, 207, 255)
     OIL = (7, 43, 58)
     CYAN_GLOW = (111, 251, 255)
-    TEXT_LIGHT = (90, 110, 126)
 
     # ─── Logo ───
     try:
@@ -65,7 +71,7 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
         img.paste(logo, (15 * S, 15 * S), logo)
         logo_right = 15 * S + logo.width
     except Exception:
-        logo_right = 15 * S  # sin logo, arranca desde la izquierda
+        logo_right = 15 * S
 
     # ─── Línea vertical separadora ───
     line_x = max(logo_right + 15 * S, 105 * S)
@@ -73,12 +79,13 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
 
     text_x = line_x + 15 * S
 
-    # ─── Cargar fuente (Space Grotesk si está disponible, sino Arial ni bien) ───
+    # ─── Fuente ───
     def _get_font(size):
         for font_name in [
-            'C:/Windows/Fonts/arial.ttf',
             'arial.ttf',
+            'C:/Windows/Fonts/arial.ttf',
             '/usr/share/fonts/truetype/msttcorefonts/Arial.ttf',
+            '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
         ]:
             try:
                 return ImageFont.truetype(font_name, size)
@@ -95,19 +102,15 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
     full_name = f'{capitalizar(nombres)} {capitalizar(apellidos)}'.strip()
     draw.text((text_x, y), full_name, fill=OIL, font=font_bold)
 
-    # ─── Cargo ───
     y += 24 * S
     draw.text((text_x, y), cargo.upper(), fill=ELECTRIC, font=font_small)
 
-    # ─── Código Maison ───
     y += 16 * S
     draw.text((text_x, y), 'Código Maison', fill=OIL, font=font_small)
 
-    # ─── Línea horizontal ───
     y += 28 * S
     draw.line([(text_x, y), (canvas_w - 15 * S, y)], fill=CYAN_GLOW, width=max(1, int(1 * S)))
 
-    # ─── Contacto ───
     y += 10 * S
     draw.text((text_x, y), 'San Antonio 385 Of 201, Santiago Centro', fill=OIL, font=font_normal)
 
@@ -119,7 +122,6 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
         y += 18 * S
         draw.text((text_x, y), f'{correo.lower()}@codigomaison.com', fill=OIL, font=font_normal)
 
-    # ─── Footer ───
     draw.text((15 * S, canvas_h - 12 * S),
               'Entorno de desarrollo limpio, escalable y eficiente.',
               fill=(*OIL, 128), font=font_tiny)
