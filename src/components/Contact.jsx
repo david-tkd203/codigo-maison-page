@@ -7,9 +7,7 @@ const initial = {
   email: '', whatsapp: '',
 };
 
-const API_URL = import.meta.env.DEV
-  ? 'http://localhost:8000/api'
-  : '/api';
+const API_URL = '/api';
 
 export default function Contact({ consentGiven = false }) {
   const [form, setForm] = useState(initial);
