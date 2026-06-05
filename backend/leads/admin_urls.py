@@ -43,10 +43,16 @@ def _generar_png(request, nombres, apellidos, cargo, telefono, correo):
     """Genera la firma como PNG con Pillow y la devuelve como descarga."""
     # Import condicional: Pillow es opcional, el admin no debe crashear si falta
     try:
-        from PIL import Image, ImageDraw, ImageFont
-    except ImportError:
+        import PIL
+    except ImportError as exc:
         return HttpResponse(
-            'Pillow no est\u00e1 instalado. Consulte al administrador.',
+            f'Error: Pillow no est\u00e1 instalado. Ejecute: pip install Pillow\u22ef {exc}',
+            content_type='text/plain; charset=utf-8', status=501)
+    try:
+        from PIL import Image, ImageDraw, ImageFont
+    except ImportError as exc:
+        return HttpResponse(
+            f'Error: Pillow tiene un problema de instalaci\u00f3n. Detalle: {exc}',
             content_type='text/plain; charset=utf-8', status=501)
 
     logo_path = os.path.join(settings.BASE_DIR.parent, 'public', 'images', 'logo-firma.png')
