@@ -6,6 +6,13 @@
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Resource hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://api.fontsource.org" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://api.fontsource.org" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700;900&display=swap" as="style" />
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -55,6 +62,148 @@
         "contactType": "Ventas",
         "availableLanguage": ["Spanish"]
       }
+    }
+    </script>
+
+    <!-- LocalBusiness JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Código Maison",
+      "image": "https://codigomaison.com/preview-hero.png",
+      "url": "https://codigomaison.com",
+      "telephone": "+56-9-7385-0360",
+      "email": "hola@codigomaison.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Santiago",
+        "addressRegion": "Región Metropolitana",
+        "addressCountry": "CL",
+        "streetAddress": "San Antonio 385, Of. 201"
+      },
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "18:00" }
+      ],
+      "sameAs": [
+        "https://wa.me/56973850360"
+      ]
+    }
+    </script>
+
+    <!-- WebSite JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Código Maison",
+      "url": "https://codigomaison.com",
+      "description": "Desarrollo de software a medida, mobile, ERP, automatización y ciberseguridad para empresas.",
+      "inLanguage": "es"
+    }
+    </script>
+
+    <!-- Service JSON-LD -->
+    <script type="application/ld+json">
+    [
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Ecosistemas Web y Cloud",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Desarrollo de plataformas web escalables y arquitecturas cloud con seguridad integrada."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Mobile Experience",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Aplicaciones móviles nativas y multiplataforma para iOS y Android."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Automatización Inteligente de Procesos",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Automatización de flujos de trabajo empresariales con inteligencia artificial."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Sistemas de Gestión Empresarial (ERP)",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Sistemas ERP a medida para optimizar la gestión integral de tu empresa."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Data Intelligence y Analytics",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Soluciones de inteligencia de datos, analytics y business intelligence."
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Consultoría en Ciberseguridad",
+        "provider": { "@type": "Organization", "name": "Código Maison" },
+        "description": "Consultoría en ciberseguridad, auditoría de infraestructura y protección de datos."
+      }
+    ]
+    </script>
+
+    <!-- FAQ JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Cómo es el proceso de trabajo en Código Maison?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Trabajamos en 4 etapas: (1) Levantamiento y estrategia, (2) Arquitectura y diseño, (3) Desarrollo ágil con ciberseguridad integrada, (4) Despliegue y evolución continua."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué tipo de software desarrollan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Desarrollamos ecosistemas web y cloud, aplicaciones mobile (iOS y Android), sistemas de gestión empresarial (ERP), automatización inteligente de procesos, data intelligence y analytics, y consultoría en ciberseguridad."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Atienden proyectos en Argentina y Chile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, atendemos proyectos en toda Argentina y Chile, con oficina en Santiago Centro y alcance en toda Latinoamérica."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Ofrecen planes de pago mensuales?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, ofrecemos planes mensuales y anuales para nuestros sistemas de gestión gastronómica (Plan Plus y Plan Pro), además de desarrollo personalizado a cotizar."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://codigomaison.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Restorant System", "item": "https://codigomaison.com/#pricing" },
+        { "@type": "ListItem", "position": 3, "name": "Soluciones", "item": "https://codigomaison.com/#solutions" },
+        { "@type": "ListItem", "position": 4, "name": "Contacto", "item": "https://codigomaison.com/#contact" }
+      ]
     }
     </script>
   </head>
